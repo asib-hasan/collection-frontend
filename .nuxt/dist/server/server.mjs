@@ -1,0 +1,1 @@
+export { default } from "file:///E:/ASIB/CCollection/ccollection-frontend/node_modules/@nuxt/vite-builder/dist/vite-node-entry.mjs"
