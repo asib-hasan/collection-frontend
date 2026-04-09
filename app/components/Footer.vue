@@ -13,7 +13,7 @@
               class="inline-block transition-transform hover:scale-105 duration-300"
             >
               <img
-                src="/images/logo1.png"
+                src="/images/logo.PNG"
                 alt="Loomino"
                 class="h-14 w-auto object-contain rounded-xl shadow-sm"
               />

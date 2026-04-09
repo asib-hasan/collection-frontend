@@ -126,7 +126,7 @@ const setPage = (page: number) => {
     <!-- Breadcrumb / Header with Background Image -->
     <div class="relative py-12 md:py-20 lg:py-28 border-b border-gray-100 overflow-hidden">
       <!-- Background Image -->
-      <img src="/images/banner2.webp" alt="Collections Banner" class="absolute inset-0 w-full h-full object-cover z-0" />
+      <img src="/images/image.webp" alt="Collections Banner" class="absolute inset-0 w-full h-full object-cover z-0" />
       
       <!-- Gradient Overlay for Readability -->
       <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent z-10"></div>

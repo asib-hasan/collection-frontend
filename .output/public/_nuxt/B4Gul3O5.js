@@ -1,0 +1,1 @@
+import{am as s}from"./BGALwniv.js";const e=s("/images/image6.webp"),m=s("/images/image7.webp"),i=s("/images/image8.webp"),o=s("/images/image9.webp"),p=s("/images/image16.webp"),t=s("/images/image17.webp"),g=s("/images/image19.webp"),_=s("/images/image20.webp");export{e as _,m as a,i as b,o as c,p as d,t as e,g as f,_ as g};
