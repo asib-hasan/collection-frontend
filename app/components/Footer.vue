@@ -28,14 +28,6 @@
         <NuxtLink to="/">FAQ</NuxtLink>
         <NuxtLink to="/">Size Guide</NuxtLink>
       </div>
-      <div class="cc-footer-col brand-col">
-        <h4>STAY CONNECTED</h4>
-        <p>Sign up to receive updates on new arrivals, exclusive promotions, and style inspiration.</p>
-        <div class="cc-newsletter">
-          <input type="email" placeholder="Enter your email" />
-          <button>SUBSCRIBE</button>
-        </div>
-      </div>
     </div>
     <div class="footer-bottom">
       <p>© {{ new Date().getFullYear() }} CCollection. All rights reserved.</p>
@@ -59,7 +51,7 @@
 
 .footer-top {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1.5fr;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
   gap: 40px;
   max-width: 1400px;
   margin: 0 auto;
@@ -104,36 +96,6 @@
 .cc-footer-col a:hover {
   color: #111;
   text-decoration: underline;
-}
-
-.cc-newsletter {
-  display: flex;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 10px;
-}
-
-.cc-newsletter input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  font-size: 13px;
-  letter-spacing: 1px;
-}
-
-.cc-newsletter button {
-  background: none;
-  border: none;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  cursor: pointer;
-  color: #111;
-  transition: color 0.3s;
-}
-
-.cc-newsletter button:hover {
-  color: #d4929f;
 }
 
 .footer-bottom {
