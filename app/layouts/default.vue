@@ -51,7 +51,7 @@ onUnmounted(() => {
         <div class="topbar-center announcement-wrapper">
           <transition name="slide-fade" mode="out-in">
             <span :key="currentAnnouncementIndex" class="announcement-text">{{ announcements[currentAnnouncementIndex]
-              }}</span>
+            }}</span>
           </transition>
         </div>
         <div class="topbar-right">
@@ -72,7 +72,7 @@ onUnmounted(() => {
       <nav class="cc-nav">
         <div class="cc-logo">
           <NuxtLink to="/" class="no-border">
-            <img src="/images/logo.PNG" alt="CCollection" />
+            <img src="/images/logo-transparent.png" alt="CCollection" />
           </NuxtLink>
         </div>
         <div class="cc-nav-left">
@@ -234,7 +234,7 @@ onUnmounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
+  padding: 10px 40px;
   max-width: 1600px;
   margin: 0 auto;
 }
@@ -255,7 +255,7 @@ onUnmounted(() => {
 
 .nav-item.has-dropdown {
   position: relative;
-  padding: 20px 0;
+  padding: 10px 0;
 }
 
 .dropdown-mega {
@@ -354,7 +354,7 @@ onUnmounted(() => {
 }
 
 .cc-logo img {
-  height: 90px;
+  height: 65px;
   object-fit: contain;
   transition: transform 0.3s ease;
   mix-blend-mode: multiply;
