@@ -5,7 +5,7 @@
   <footer class="cc-footer">
     <div class="footer-top">
       <div class="cc-footer-col">
-        <img src="/images/logo.PNG" alt="CCollection" class="footer-logo" style="mix-blend-mode: multiply;" />
+        <img src="/images/logo-dark.png" alt="CCollection" class="footer-logo" style="mix-blend-mode: multiply;" />
         <p class="mt-4">Your premier destination for luxury dresses and unforgettable styles.</p>
       </div>
       <div class="cc-footer-col">
@@ -40,7 +40,9 @@
     <div class="footer-bottom">
       <p>© {{ new Date().getFullYear() }} CCollection. All rights reserved.</p>
       <p>
-        Developed by <a href="https://creativetechpark.com/" target="_blank" style="color: #666; font-weight: 500; transition: color 0.3s;" onmouseover="this.style.color='#111'" onmouseout="this.style.color='#666'">Creative Tech Park</a>.
+        Developed by <a href="https://creativetechpark.com/" target="_blank"
+          style="color: #666; font-weight: 500; transition: color 0.3s;" onmouseover="this.style.color='#111'"
+          onmouseout="this.style.color='#666'">Creative Tech Park</a>.
       </p>
     </div>
   </footer>
