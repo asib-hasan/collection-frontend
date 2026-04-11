@@ -1,6 +1,6 @@
-/// <reference types="@nuxt/ui" />
 /// <reference types="@pinia/nuxt" />
 /// <reference types="@nuxt/devtools" />
+/// <reference types="@nuxt/ui" />
 /// <reference types="@nuxt/telemetry" />
 /// <reference types="pinia-plugin-persistedstate" />
 /// <reference path="types/nitro-layouts.d.ts" />

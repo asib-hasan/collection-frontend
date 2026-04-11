@@ -50,7 +50,8 @@ onUnmounted(() => {
         </div>
         <div class="topbar-center announcement-wrapper">
           <transition name="slide-fade" mode="out-in">
-            <span :key="currentAnnouncementIndex" class="announcement-text">{{ announcements[currentAnnouncementIndex] }}</span>
+            <span :key="currentAnnouncementIndex" class="announcement-text">{{ announcements[currentAnnouncementIndex]
+              }}</span>
           </transition>
         </div>
         <div class="topbar-right">
@@ -78,12 +79,12 @@ onUnmounted(() => {
           <div class="nav-item has-dropdown">
             <NuxtLink to="/">ALL COLLECTION</NuxtLink>
             <div class="dropdown-mega">
-               <div class="mega-row">
-                  <div class="mega-col" v-for="col in collections" :key="col.name">
-                     <h4>{{ col.name }}</h4>
-                     <NuxtLink v-for="sub in col.subcategories" :key="sub" to="/">{{ sub }}</NuxtLink>
-                  </div>
-               </div>
+              <div class="mega-row">
+                <div class="mega-col" v-for="col in collections" :key="col.name">
+                  <h4>{{ col.name }}</h4>
+                  <NuxtLink v-for="sub in col.subcategories" :key="sub" to="/">{{ sub }}</NuxtLink>
+                </div>
+              </div>
             </div>
           </div>
           <NuxtLink to="/">PROM</NuxtLink>
@@ -94,7 +95,7 @@ onUnmounted(() => {
           <div class="nav-search-bar">
             <input type="text" placeholder="Search dresses..." />
             <button aria-label="Search">
-              <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
                 <path
                   d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
               </svg>
@@ -108,46 +109,7 @@ onUnmounted(() => {
     <main class="cc-main">
       <slot />
     </main>
-    <footer class="cc-footer">
-      <div class="footer-top">
-        <div class="cc-footer-col">
-          <img src="/images/logo.PNG" alt="CCollection" class="footer-logo" style="mix-blend-mode: multiply;" />
-          <p class="mt-4">Your premier destination for luxury dresses and unforgettable styles.</p>
-        </div>
-        <div class="cc-footer-col">
-          <h4>SHOP</h4>
-          <NuxtLink to="/">Prom Dresses</NuxtLink>
-          <NuxtLink to="/">Homecoming</NuxtLink>
-          <NuxtLink to="/">Evening Gowns</NuxtLink>
-          <NuxtLink to="/">Wedding Dresses</NuxtLink>
-        </div>
-        <div class="cc-footer-col">
-          <h4>ABOUT</h4>
-          <NuxtLink to="/">Our Story</NuxtLink>
-          <NuxtLink to="/">Store Locator</NuxtLink>
-          <NuxtLink to="/">Careers</NuxtLink>
-        </div>
-        <div class="cc-footer-col">
-          <h4>SUPPORT</h4>
-          <NuxtLink to="/">Contact Us</NuxtLink>
-          <NuxtLink to="/">Shipping & Returns</NuxtLink>
-          <NuxtLink to="/">FAQ</NuxtLink>
-          <NuxtLink to="/">Size Guide</NuxtLink>
-        </div>
-        <div class="cc-footer-col brand-col">
-          <h4>STAY CONNECTED</h4>
-          <p>Sign up to receive updates on new arrivals, exclusive promotions, and style inspiration.</p>
-          <div class="cc-newsletter">
-            <input type="email" placeholder="Enter your email" />
-            <button>SUBSCRIBE</button>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2026 CCollection. All rights reserved.</p>
-        <img src="/images/sslcommarz.png" alt="Payments" class="payments-img" />
-      </div>
-    </footer>
+    <Footer />
   </div>
 </template>
 
@@ -203,21 +165,26 @@ onUnmounted(() => {
   flex: 2;
   text-align: center;
 }
+
 .announcement-wrapper {
   position: relative;
   overflow: hidden;
 }
+
 .announcement-text {
   display: inline-block;
 }
+
 .slide-fade-enter-active,
 .slide-fade-leave-active {
   transition: all 0.5s ease;
 }
+
 .slide-fade-enter-from {
   opacity: 0;
   transform: translateY(10px);
 }
+
 .slide-fade-leave-to {
   opacity: 0;
   transform: translateY(-10px);
@@ -236,10 +203,10 @@ onUnmounted(() => {
 .nav-search-bar {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 2px;
-  margin-right: 15px;
-  width: 180px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 8px;
+  margin-right: 25px;
+  width: 320px;
 }
 
 .nav-search-bar input {
@@ -247,7 +214,7 @@ onUnmounted(() => {
   background: transparent;
   outline: none;
   width: 100%;
-  font-size: 12px;
+  font-size: 16px;
   font-family: 'Jost', sans-serif;
 }
 
@@ -298,7 +265,7 @@ onUnmounted(() => {
   width: 700px;
   background: #fff;
   border: 1px solid #efefef;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
   padding: 30px;
   display: none;
   z-index: 100;
@@ -375,6 +342,7 @@ onUnmounted(() => {
 .cc-nav a:hover::after {
   width: 100%;
 }
+
 .no-border::after {
   display: none !important;
 }
@@ -401,143 +369,15 @@ onUnmounted(() => {
   flex: 1;
 }
 
-/* Footer Styles */
-.cc-footer {
-  background-color: #fcfcfc;
-  border-top: 1px solid #f0f0f0;
-  padding: 60px 40px 20px;
-  margin-top: 80px;
-}
-
-.footer-top {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1.5fr;
-  gap: 40px;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding-bottom: 50px;
-}
-
-.cc-footer-col h4 {
-  font-family: 'Cinzel', serif;
-  font-size: 16px;
-  margin-bottom: 25px;
-  letter-spacing: 1px;
-  color: #111;
-}
-
-.cc-footer-col p {
-  font-size: 14px;
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.cc-footer-col a {
-  display: block;
-  text-decoration: none;
-  color: #555;
-  font-size: 14px;
-  margin-bottom: 12px;
-  transition: color 0.3s ease;
-}
-
-.footer-logo {
-  height: 60px;
-  object-fit: contain;
-  opacity: 0.8;
-  mix-blend-mode: multiply;
-}
-
-.mt-4 {
-  margin-top: 15px;
-}
-
-.cc-footer-col a:hover {
-  color: #111;
-  text-decoration: underline;
-}
-
-.cc-newsletter {
-  display: flex;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 10px;
-}
-
-.cc-newsletter input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  font-size: 13px;
-  letter-spacing: 1px;
-}
-
-.cc-newsletter button {
-  background: none;
-  border: none;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  cursor: pointer;
-  color: #111;
-  transition: color 0.3s;
-}
-
-.cc-newsletter button:hover {
-  color: #d4929f;
-}
-
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding-top: 20px;
-  border-top: 1px solid #e1e1e1;
-  font-size: 12px;
-  color: #888;
-}
-
-.payments-img {
-  height: 25px;
-  opacity: 0.8;
-  filter: grayscale(100%);
-  transition: filter 0.3s;
-}
-
-.payments-img:hover {
-  filter: grayscale(0%);
-}
-
 @media (max-width: 1024px) {
   .cc-header {
     display: none !important;
-  }
-  .cc-footer {
-    padding: 40px 20px 20px;
-    margin-top: 40px;
-  }
-  .footer-top {
-    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (min-width: 1025px) {
   .mobile-header-root {
     display: none !important;
-  }
-}
-
-@media (max-width: 600px) {
-  .footer-top {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    gap: 15px;
   }
 }
 </style>

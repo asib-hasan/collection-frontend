@@ -1,0 +1,8 @@
+const NavBar_vue_vue_type_style_index_0_scoped_744a4585_lang = ".slide-down-enter-active[data-v-744a4585],.slide-down-leave-active[data-v-744a4585]{transition:all .35s cubic-bezier(.16,1,.3,1)}.slide-down-enter-from[data-v-744a4585],.slide-down-leave-to[data-v-744a4585]{opacity:0;transform:translateY(-20px)}.nav-link-active[data-v-744a4585]{color:#000!important}";
+
+const NavBarStyles_B0sfHe51 = [
+  NavBar_vue_vue_type_style_index_0_scoped_744a4585_lang
+];
+
+export { NavBarStyles_B0sfHe51 as default };
+//# sourceMappingURL=NavBar-styles.B0sfHe51.mjs.map

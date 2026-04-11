@@ -52,4 +52,5 @@ export { useScrollspy } from '../node_modules/@nuxt/ui/dist/runtime/composables/
 export { useToast } from '../node_modules/@nuxt/ui/dist/runtime/composables/useToast';
 export { defineStore, acceptHMRUpdate, usePinia, storeToRefs } from '../node_modules/@pinia/nuxt/dist/runtime/composables';
 export { storages as piniaPluginPersistedstate } from '../node_modules/pinia-plugin-persistedstate/dist/nuxt/runtime/storages';
+export { useNuxtDevTools } from '../node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools';
 export { useColorMode } from '../node_modules/@nuxtjs/color-mode/dist/runtime/composables';

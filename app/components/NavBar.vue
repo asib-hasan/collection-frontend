@@ -229,12 +229,12 @@ const navLinks = [
           <div class="container mx-auto">
             <div class="relative group">
               <Icon name="mdi:magnify"
-                class="absolute left-6 top-1/2 -translate-y-1/2 text-2xl text-gray-400 group-focus-within:text-primary transition-colors" />
+                class="absolute left-6 top-1/2 -translate-y-1/2 text-4xl text-gray-400 group-focus-within:text-primary transition-colors" />
               <input v-model="searchQuery" type="text" placeholder="What are you looking for today?"
-                class="w-full bg-gray-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-2xl py-4 pl-16 pr-32 text-lg text-gray-800 outline-none transition-all shadow-inner"
+                class="w-full bg-gray-50 border-2 border-transparent focus:border-primary focus:bg-white rounded-3xl py-6 pl-20 pr-40 text-2xl text-gray-800 outline-none transition-all shadow-inner"
                 @keyup.enter="handleSearch" ref="searchInput" />
               <button
-                class="absolute right-3 top-1/2 -translate-y-1/2 bg-primary px-6 py-2.5 rounded-xl font-bold text-black hover:opacity-90 transition-opacity"
+                class="absolute right-4 top-1/2 -translate-y-1/2 bg-primary px-8 py-4 rounded-xl font-bold text-black text-lg hover:opacity-90 transition-opacity"
                 @click="handleSearch">
                 Search
               </button>
