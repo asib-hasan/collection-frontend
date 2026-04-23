@@ -21,7 +21,6 @@ interface _GlobalComponents {
   DashboardMyCancellations: typeof import("../../app/components/Dashboard/MyCancellations.vue")['default']
   DashboardMyOrders: typeof import("../../app/components/Dashboard/MyOrders.vue")['default']
   DashboardMyReturns: typeof import("../../app/components/Dashboard/MyReturns.vue")['default']
-  DashboardMyReviews: typeof import("../../app/components/Dashboard/MyReviews.vue")['default']
   DashboardOrderTracking: typeof import("../../app/components/Dashboard/OrderTracking.vue")['default']
   Footer: typeof import("../../app/components/Footer.vue")['default']
   Header: typeof import("../../app/components/Header.vue")['default']
@@ -195,7 +194,6 @@ interface _GlobalComponents {
   LazyDashboardMyCancellations: LazyComponent<typeof import("../../app/components/Dashboard/MyCancellations.vue")['default']>
   LazyDashboardMyOrders: LazyComponent<typeof import("../../app/components/Dashboard/MyOrders.vue")['default']>
   LazyDashboardMyReturns: LazyComponent<typeof import("../../app/components/Dashboard/MyReturns.vue")['default']>
-  LazyDashboardMyReviews: LazyComponent<typeof import("../../app/components/Dashboard/MyReviews.vue")['default']>
   LazyDashboardOrderTracking: LazyComponent<typeof import("../../app/components/Dashboard/OrderTracking.vue")['default']>
   LazyFooter: LazyComponent<typeof import("../../app/components/Footer.vue")['default']>
   LazyHeader: LazyComponent<typeof import("../../app/components/Header.vue")['default']>

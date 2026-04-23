@@ -8,6 +8,9 @@ const searchQuery = ref('');
 const cartStore = useCartStore();
 const cartCount = computed(() => cartStore.cartCount);
 
+const authStore = useAuthStore();
+const isLoggedIn = computed(() => authStore.loggedIn);
+
 const toggleDrawer = () => {
   isDrawerOpen.value = !isDrawerOpen.value;
 };
@@ -46,13 +49,15 @@ const collections = [
   }
 ];
 
-const mainLinks = [
+const mainLinks = computed(() => [
   { name: 'HOME', to: '/' },
   { name: 'NEW ARRIVALS', to: '/products' },
   { name: 'HOMECOMING', to: '/products?category=Homecoming' },
   { name: 'WEDDING', to: '/products?category=Bridal' },
-  { name: 'LOGIN / REGISTER', to: '/auth/login' }
-];
+  isLoggedIn.value 
+    ? { name: 'MY ACCOUNT', to: '/dashboard' } 
+    : { name: 'LOGIN / REGISTER', to: '/auth/login' }
+]);
 </script>
 
 <template>

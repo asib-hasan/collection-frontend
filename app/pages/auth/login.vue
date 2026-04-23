@@ -22,8 +22,21 @@ const handleLogin = async () => {
     loading.value = true;
     errorMsg.value = '';
     fieldErrors.value = {};
-    await authStore.login(loginForm);
-    router.push('/'); 
+    
+    // Mocking the login for now to jump straight to the dashboard
+    authStore.$patch({
+      loggedIn: true,
+      accessToken: 'mock_token_123',
+      user: {
+        id: 1,
+        name: 'Guest User',
+        email: loginForm.email || 'guest@ccollection.com',
+        phone: '+1 234 567 8900',
+        avatar: null
+      }
+    });
+    
+    router.push('/dashboard'); 
   } catch (err) {
     if (err.response?.data?.errors) {
       fieldErrors.value = err.response.data.errors;

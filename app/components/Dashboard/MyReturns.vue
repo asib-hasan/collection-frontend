@@ -61,96 +61,65 @@ const getStatusTheme = (status: string) => {
 <template>
   <div class="h-full flex flex-col">
     <!-- Header -->
-    <div
-      class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8"
-    >
-      <div class="flex items-center gap-3">
-        <div
-          class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0"
-        >
-          <Icon
-            name="ph:arrow-u-down-left-duotone"
-            class="text-primary text-2xl"
-          />
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10 pb-4 border-b border-gray-100">
+      <div class="flex items-center gap-4">
+        <div class="w-10 h-10 flex items-center justify-center border border-gray-200 text-[#111]">
+          <Icon name="mdi:keyboard-return" class="text-xl" />
         </div>
         <div>
-          <h2 class="text-2xl font-black text-gray-900">My Returns</h2>
-          <p class="text-sm text-gray-500 font-medium mt-0.5">
-            Track your product returns and refunds.
-          </p>
+          <h2 class="font-cinzel text-2xl tracking-widest text-[#111] uppercase">My Returns</h2>
+          <p class="font-jost text-[13px] text-gray-500 tracking-wide mt-1">Track your product returns and refunds.</p>
         </div>
       </div>
 
-      <button
-        class="px-5 py-3 rounded-xl border-2 border-gray-200 text-gray-600 font-black uppercase tracking-widest text-xs hover:border-primary hover:text-primary hover:bg-primary/5 transition-all text-center flex items-center gap-2 active:scale-95 w-full sm:w-auto justify-center"
-      >
-        <Icon name="ph:question-bold" class="text-sm" /> Return Policy
+      <button class="font-jost text-[11px] font-medium tracking-[2px] uppercase text-[#111] border-b border-[#111] pb-0.5 hover:text-[#d4929f] hover:border-[#d4929f] transition-colors flex items-center gap-2">
+        Return Policy <Icon name="mdi:arrow-right" class="text-sm" />
       </button>
     </div>
 
     <!-- Returns Feed -->
     <div class="space-y-6 flex-1">
-      <div v-if="returns.length > 0" class="space-y-6 pb-4">
+      <div v-if="returns.length > 0" class="space-y-8 pb-4">
         <!-- Return Card -->
         <div
           v-for="ret in returns"
           :key="ret.id"
-          class="bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 group"
+          class="bg-white border border-gray-200 group"
         >
           <!-- Return Header -->
-          <div
-            class="p-5 md:p-6 border-b border-gray-100 bg-gray-50/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
-          >
+          <div class="p-6 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-[#fbfaf8]">
             <div class="w-full sm:w-auto">
-              <div class="flex flex-wrap items-center gap-2 sm:gap-3 mb-1">
-                <h3
-                  class="text-lg font-black text-gray-900 flex items-center gap-2"
-                >
-                  <Icon name="ph:arrow-u-down-left-bold" class="text-primary" />
+              <div class="flex flex-wrap items-center gap-3 mb-2">
+                <h3 class="font-cinzel text-lg tracking-widest text-[#111] uppercase flex items-center gap-2">
+                  <Icon name="mdi:keyboard-return" class="text-[#d4929f]" />
                   {{ ret.return_code }}
                 </h3>
                 <span
-                  class="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border"
-                  :class="getStatusTheme(ret.status)"
+                  class="px-3 py-1 text-[10px] font-jost font-medium uppercase tracking-[2px] border bg-white"
+                  :class="{
+                    'border-green-200 text-green-700': ret.status == 'refunded',
+                    'border-[#d4929f] text-[#d4929f]': ret.status == 'approved',
+                    'border-orange-200 text-orange-600': ret.status == 'processing',
+                    'border-gray-300 text-gray-600': ret.status == 'pending',
+                    'border-red-200 text-red-600': ret.status == 'rejected'
+                  }"
                 >
                   <span class="flex items-center gap-1.5">
-                    <span
-                      v-if="
-                        ret.status == 'processing' || ret.status == 'pending'
-                      "
-                      class="w-1.5 h-1.5 rounded-full bg-current animate-pulse"
-                    ></span>
+                    <span v-if="ret.status == 'processing' || ret.status == 'pending'" class="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
                     {{ ret.status }}
                   </span>
                 </span>
               </div>
-              <p
-                class="text-xs text-gray-500 font-medium flex items-center gap-1.5"
-              >
-                <Icon name="ph:calendar-blank" class="text-primary/70" />
+              <p class="text-xs text-gray-500 font-jost tracking-wide flex items-center gap-2 uppercase">
                 Requested on
-                {{
-                  new Date(ret.requested_at).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })
-                }}
+                {{ new Date(ret.requested_at).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) }}
               </p>
             </div>
 
-            <div
-              class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end"
-            >
+            <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
               <div class="text-left sm:text-right shrink-0">
-                <p
-                  class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-0.5"
-                >
-                  Original Order
-                </p>
-                <span
-                  class="text-sm font-black text-primary leading-none cursor-pointer hover:underline"
-                >
+                <p class="font-jost text-[10px] text-gray-400 font-medium uppercase tracking-[2px] mb-1">Original Order</p>
+                <span class="text-sm font-jost font-medium text-[#111] border-b border-transparent hover:border-[#111] cursor-pointer transition-colors pb-0.5">
                   {{ ret.order_code }}
                 </span>
               </div>
@@ -158,38 +127,24 @@ const getStatusTheme = (status: string) => {
           </div>
 
           <!-- Product Returned -->
-          <div class="p-5 md:p-6 bg-white border-b border-gray-50">
-            <div
-              class="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center"
-            >
-              <div
-                class="relative w-20 h-20 sm:w-24 sm:h-24 bg-gray-50 rounded-xl overflow-hidden flex-shrink-0 border border-gray-100 p-2"
-              >
+          <div class="p-6 bg-white border-b border-gray-100">
+            <div class="flex flex-col sm:flex-row gap-6 items-start">
+              <div class="relative w-24 aspect-[2/3] bg-[#f9f9f9] flex-shrink-0">
                 <img
                   :src="ret.product.image_url"
                   :alt="ret.product.title"
                   @error="handleImageError"
-                  class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
+                  class="w-full h-full object-cover mix-blend-multiply"
                 />
               </div>
 
               <div class="flex-1 min-w-0">
-                <h4
-                  class="font-bold text-gray-900 text-base sm:text-lg mb-1 leading-tight line-clamp-2"
-                >
+                <h4 class="font-jost text-[15px] text-[#111] mb-4 hover:text-[#d4929f] transition-colors cursor-pointer tracking-wide">
                   {{ ret.product.title }}
                 </h4>
-                <div
-                  class="p-4 bg-orange-50/50 rounded-xl border border-orange-100/50 mt-3 relative"
-                >
-                  <Icon
-                    name="ph:quotes-fill"
-                    class="absolute -top-3 left-4 text-3xl text-orange-200 opacity-50 bg-white"
-                  />
-                  <p
-                    class="text-sm font-medium text-orange-800 italic relative z-10 leading-relaxed"
-                  >
-                    {{ ret.reason }}
+                <div class="p-4 bg-[#fbfaf8] border-l-2 border-[#d4929f]">
+                  <p class="font-jost text-[13px] text-gray-600 italic leading-relaxed">
+                    "{{ ret.reason }}"
                   </p>
                 </div>
               </div>
@@ -197,60 +152,29 @@ const getStatusTheme = (status: string) => {
           </div>
 
           <!-- Return Financials -->
-          <div
-            class="p-5 flex items-center justify-between gap-4 bg-gray-50/50"
-          >
+          <div class="p-6 flex items-center justify-between gap-4 bg-white">
             <div class="flex items-center gap-3">
-              <div
-                class="w-10 h-10 rounded-xl bg-white border border-gray-200 flex items-center justify-center text-gray-400"
-              >
-                <Icon name="ph:money-bold" class="text-lg" />
-              </div>
               <div>
-                <p
-                  class="text-[10px] text-gray-400 font-bold uppercase tracking-widest"
-                >
-                  Expected Refund
-                </p>
-                <span class="text-lg font-black text-gray-900"
-                  >৳{{ ret.refund_amount.toLocaleString() }}</span
-                >
+                <p class="font-jost text-[10px] text-gray-400 font-medium uppercase tracking-[2px] mb-1">Expected Refund</p>
+                <span class="text-xl font-jost font-medium text-[#111]">৳{{ ret.refund_amount.toLocaleString() }}</span>
               </div>
             </div>
 
-            <button
-              class="px-5 py-2.5 rounded-xl border border-gray-200 text-gray-600 font-black uppercase tracking-widest text-[10px] hover:bg-white hover:text-primary transition-all shadow-sm flex items-center gap-2 active:scale-95 shrink-0"
-            >
-              View Details <Icon name="ph:caret-right-bold" class="text-sm" />
+            <button class="px-6 py-3 border border-gray-200 text-[#111] hover:bg-[#111] hover:text-white transition-colors duration-300 font-jost text-[11px] font-medium tracking-[2px] uppercase shrink-0">
+              View Details
             </button>
           </div>
         </div>
       </div>
 
       <!-- Empty State -->
-      <div
-        v-else
-        class="flex-1 flex flex-col items-center justify-center text-center py-20 bg-white rounded-3xl border border-gray-100 shadow-sm"
-      >
-        <div class="relative w-32 h-32 mb-6">
-          <div
-            class="absolute inset-0 bg-primary/10 rounded-full animate-ping opacity-70"
-          ></div>
-          <div
-            class="relative w-full h-full bg-gray-50 rounded-full flex items-center justify-center border-4 border-white shadow-xl"
-          >
-            <Icon
-              name="ph:arrow-u-down-left-duotone"
-              class="text-6xl text-gray-300"
-            />
-          </div>
+      <div v-else class="flex-1 flex flex-col items-center justify-center text-center py-20 bg-white border border-gray-100 animate-fade-in-up">
+        <div class="w-16 h-16 flex items-center justify-center border border-gray-200 mb-6 bg-[#fbfaf8]">
+          <Icon name="mdi:keyboard-return" class="text-2xl text-gray-400" />
         </div>
-        <h3 class="text-2xl font-black text-gray-900 mb-2">
-          No Returns Requested
-        </h3>
-        <p class="text-gray-500 mb-8 max-w-sm font-medium">
-          Any items you request to return for a refund or replacement will
-          appear here.
+        <h3 class="font-cinzel text-xl tracking-widest text-[#111] uppercase mb-3">No Returns Requested</h3>
+        <p class="font-jost text-[14px] text-gray-500 tracking-wide max-w-sm mb-8">
+          Any items you request to return for a refund or replacement will appear here.
         </p>
       </div>
     </div>

@@ -1,9 +1,13 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue';
 import { useCartStore } from '~/stores/cart';
+import { useAuthStore } from '~/stores/auth';
 
 const cartStore = useCartStore();
 const cartCount = computed(() => cartStore.cartCount);
+
+const authStore = useAuthStore();
+const isLoggedIn = computed(() => authStore.loggedIn);
 
 const collections = [
   {
@@ -105,7 +109,8 @@ onUnmounted(() => {
               </svg>
             </button>
           </div>
-          <NuxtLink to="/auth/login">LOGIN</NuxtLink>
+          <NuxtLink v-if="!isLoggedIn" to="/auth/login">LOGIN</NuxtLink>
+          <NuxtLink v-else to="/dashboard">MY ACCOUNT</NuxtLink>
           <NuxtLink to="/cart">BAG ({{ cartCount }})</NuxtLink>
         </div>
       </nav>

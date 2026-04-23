@@ -5,9 +5,11 @@ import { useNuxtApp, navigateTo } from '#app';
 const authStore = useAuthStore();
 const toast = useToast();
 
-const { data: userData, refresh } = await useAPI<any>(
-  `/frontend/v1/customer/${(authStore.user as any)?.id}`
-);
+const userData = ref({
+  name: "Alexander Pierce",
+  email: "alexander.pierce@example.com",
+  phone: "+1 234 567 8900",
+});
 
 const user = computed(() => userData.value || {});
 
@@ -58,15 +60,9 @@ const updateProfile = async () => {
   const { $api } = useNuxtApp();
   try {
     loading.value = true;
-    await $api(`/frontend/v1/customer/${(authStore.user as any)?.id}`, {
-      method: "POST",
-      params: { _method: "PUT" },
-      body: {
-        name: form.value.name,
-        phone: form.value.phone,
-        email: form.value.email
-      },
-    });
+    
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     toast.add({
       title: "Success",
@@ -91,17 +87,8 @@ const updatePassword = async () => {
   try {
     passwordLoading.value = true;
 
-    const payload = {
-      old_password: passwordForm.value.current_password,
-      new_password: passwordForm.value.password,
-      new_password_confirmation: passwordForm.value.password_confirmation,
-    };
-
-    await $api(`/frontend/v1/customer/${(authStore.user as any)?.id}`, {
-      method: "POST",
-      params: { _method: "PUT" },
-      body: payload,
-    });
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     toast.add({
       title: "Success",
@@ -133,74 +120,70 @@ const updatePassword = async () => {
 <template>
   <div class="h-full flex flex-col">
     <!-- Header -->
-    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
-      <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-          <Icon name="ph:gear-duotone" class="text-primary text-2xl" />
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10 pb-4 border-b border-gray-100">
+      <div class="flex items-center gap-4">
+        <div class="w-10 h-10 flex items-center justify-center border border-gray-200 text-[#111]">
+          <Icon name="mdi:account-outline" class="text-xl" />
         </div>
         <div>
-          <h2 class="text-2xl font-black text-gray-900">Account Settings</h2>
-          <p class="text-sm text-gray-500 font-medium mt-0.5">Manage your personal details and security preferences.</p>
+          <h2 class="font-cinzel text-2xl tracking-widest text-[#111] uppercase">Account Settings</h2>
+          <p class="font-jost text-[13px] text-gray-500 tracking-wide mt-1">Manage your personal details and security preferences.</p>
         </div>
       </div>
     </div>
 
-    <div class="space-y-12">
+    <div class="space-y-16 max-w-3xl">
       <!-- Profile Information Section -->
       <section>
-        <div class="flex items-center gap-2 mb-6 border-b border-gray-100 pb-4">
-          <Icon name="ph:user-circle-bold" class="text-primary text-xl" />
-          <h3 class="text-lg font-black text-gray-900 uppercase tracking-widest">Personal Information</h3>
+        <div class="flex items-center gap-3 mb-8">
+          <h3 class="font-cinzel text-lg tracking-widest text-[#111] uppercase">Personal Information</h3>
+          <div class="flex-1 h-px bg-gray-100"></div>
         </div>
 
-        <form @submit.prevent="updateProfile" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-          <div class="space-y-2">
-            <label class="block text-[10px] font-black text-gray-900 uppercase tracking-widest">Full Name</label>
+        <form @submit.prevent="updateProfile" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
+          <div class="space-y-3">
+            <label class="block font-jost text-[11px] font-medium tracking-[2px] text-[#111] uppercase">Full Name</label>
             <div class="relative">
-              <Icon name="ph:user" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
               <input v-model="form.name" type="text"
-                class="w-full pl-11 pr-4 py-3.5 rounded-xl border-2 border-gray-100 focus:border-primary focus:ring-4 focus:ring-primary/10 text-sm font-bold bg-white outline-none transition-all placeholder-gray-400" />
+                class="w-full bg-transparent border-b border-gray-300 py-3 font-jost text-[15px] text-[#111] focus:outline-none focus:border-[#d4929f] transition-colors rounded-none px-0 placeholder-gray-400" placeholder="Your name" />
             </div>
           </div>
 
-          <div class="space-y-2">
-            <label class="block text-[10px] font-black text-gray-900 uppercase tracking-widest leading-loose flex justify-between items-center mr-1">
+          <div class="space-y-3">
+            <label class="flex justify-between items-center font-jost text-[11px] font-medium tracking-[2px] text-[#111] uppercase">
               <span>Email Address</span>
               <button 
                 type="button" 
                 @click="isEmailEditable = !isEmailEditable"
-                class="text-[10px] text-primary hover:underline font-black uppercase tracking-widest"
+                class="text-[#d4929f] hover:text-[#111] transition-colors underline decoration-transparent hover:decoration-[#111] underline-offset-4"
               >
-                {{ isEmailEditable ? 'Cancel' : 'Change Email' }}
+                {{ isEmailEditable ? 'Cancel' : 'Change' }}
               </button>
             </label>
             <div class="relative">
-              <Icon name="ph:envelope" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
               <input 
                 v-model="form.email" 
                 type="email" 
                 :disabled="!isEmailEditable"
-                class="w-full pl-11 pr-4 py-3.5 rounded-xl border-2 transition-all outline-none text-sm font-bold"
-                :class="!isEmailEditable ? 'bg-gray-50 border-gray-100 text-gray-500 cursor-not-allowed' : 'bg-white border-primary focus:ring-4 focus:ring-primary/10 text-gray-900'"
+                class="w-full bg-transparent border-b py-3 font-jost text-[15px] focus:outline-none transition-colors rounded-none px-0"
+                :class="!isEmailEditable ? 'border-gray-200 text-gray-400 cursor-not-allowed' : 'border-gray-300 text-[#111] focus:border-[#d4929f]'"
               />
             </div>
           </div>
 
-          <div class="space-y-2">
-            <label class="block text-[10px] font-black text-gray-900 uppercase tracking-widest">Phone Number</label>
+          <div class="space-y-3">
+            <label class="block font-jost text-[11px] font-medium tracking-[2px] text-[#111] uppercase">Phone Number</label>
             <div class="relative">
-              <Icon name="ph:phone" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
               <input v-model="form.phone" type="tel"
-                class="w-full pl-11 pr-4 py-3.5 rounded-xl border-2 border-gray-100 focus:border-primary focus:ring-4 focus:ring-primary/10 text-sm font-bold bg-white outline-none transition-all placeholder-gray-400" />
+                class="w-full bg-transparent border-b border-gray-300 py-3 font-jost text-[15px] text-[#111] focus:outline-none focus:border-[#d4929f] transition-colors rounded-none px-0 placeholder-gray-400" placeholder="Your phone" />
             </div>
           </div>
 
-          <div class="md:col-span-2 flex justify-end mt-4">
+          <div class="md:col-span-2 flex justify-start mt-4">
             <button type="submit" :disabled="loading || !hasFormChanges"
-              class="px-8 py-3.5 bg-gradient-to-r from-primary to-secondary text-white rounded-xl font-black uppercase tracking-widest shadow-lg shadow-primary/30 hover:shadow-xl active:scale-95 transition-all text-xs disabled:opacity-50 disabled:scale-100 flex items-center gap-2">
-              <Icon v-if="loading" name="ph:spinner-gap" class="animate-spin text-base" />
-              <Icon v-else name="ph:floppy-disk-back-fill" class="text-base" />
-              {{ loading ? 'Saving...' : 'Save Profile Changes' }}
+              class="px-10 py-4 bg-[#111] text-white font-jost text-[12px] font-medium tracking-[2px] uppercase border border-[#111] hover:bg-transparent hover:text-[#111] transition-colors disabled:opacity-30 disabled:hover:bg-[#111] disabled:hover:text-white flex items-center gap-3">
+              <Icon v-if="loading" name="mdi:loading" class="animate-spin text-base" />
+              {{ loading ? 'Saving...' : 'Save Changes' }}
             </button>
           </div>
         </form>
@@ -208,71 +191,58 @@ const updatePassword = async () => {
 
       <!-- Security Section -->
       <section>
-        <div class="flex items-center gap-2 mb-6 border-b border-gray-100 pb-4">
-          <Icon name="ph:lock-key-bold" class="text-primary text-xl" />
-          <h3 class="text-lg font-black text-gray-900 uppercase tracking-widest">Security &amp; Password</h3>
+        <div class="flex items-center gap-3 mb-8">
+          <h3 class="font-cinzel text-lg tracking-widest text-[#111] uppercase">Security &amp; Password</h3>
+          <div class="flex-1 h-px bg-gray-100"></div>
         </div>
 
-        <form @submit.prevent="updatePassword"
-          class="bg-gray-50 p-6 md:p-8 rounded-3xl border border-gray-100 max-w-2xl">
+        <form @submit.prevent="updatePassword" class="space-y-8">
 
-          <div class="space-y-5">
-            <div class="space-y-2">
-              <label class="block text-[10px] font-black text-gray-900 uppercase tracking-widest">Current
-                Password</label>
-              <div class="relative">
-                <Icon name="ph:lock" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                <input v-model="passwordForm.current_password" :type="showCurrentPassword ? 'text' : 'password'"
-                  required
-                  class="w-full pl-11 pr-12 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 text-sm font-bold bg-white outline-none transition-all" />
-                <button type="button" @click="showCurrentPassword = !showCurrentPassword"
-                  class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary transition-colors">
-                  <Icon :name="showCurrentPassword ? 'ph:eye-slash-bold' : 'ph:eye-bold'" class="text-lg" />
-                </button>
-              </div>
+          <div class="space-y-3">
+            <label class="block font-jost text-[11px] font-medium tracking-[2px] text-[#111] uppercase">Current Password</label>
+            <div class="relative max-w-md">
+              <input v-model="passwordForm.current_password" :type="showCurrentPassword ? 'text' : 'password'" required
+                class="w-full bg-transparent border-b border-gray-300 py-3 font-jost text-[15px] text-[#111] focus:outline-none focus:border-[#d4929f] transition-colors rounded-none px-0 pr-10" />
+              <button type="button" @click="showCurrentPassword = !showCurrentPassword"
+                class="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#111] transition-colors">
+                <Icon :name="showCurrentPassword ? 'mdi:eye-off-outline' : 'mdi:eye-outline'" class="text-lg" />
+              </button>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <label class="block font-jost text-[11px] font-medium tracking-[2px] text-[#111] uppercase">New Password</label>
+            <div class="relative max-w-md">
+              <input v-model="passwordForm.password" :type="showNewPassword ? 'text' : 'password'" required minlength="8"
+                class="w-full bg-transparent border-b border-gray-300 py-3 font-jost text-[15px] text-[#111] focus:outline-none focus:border-[#d4929f] transition-colors rounded-none px-0 pr-10" />
+              <button type="button" @click="showNewPassword = !showNewPassword"
+                class="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#111] transition-colors">
+                <Icon :name="showNewPassword ? 'mdi:eye-off-outline' : 'mdi:eye-outline'" class="text-lg" />
+              </button>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <label class="block font-jost text-[11px] font-medium tracking-[2px] text-[#111] uppercase">Confirm New Password</label>
+            <div class="relative max-w-md">
+              <input v-model="passwordForm.password_confirmation" :type="showConfirmPassword ? 'text' : 'password'" required minlength="8"
+                class="w-full bg-transparent border-b border-gray-300 py-3 font-jost text-[15px] text-[#111] focus:outline-none focus:border-[#d4929f] transition-colors rounded-none px-0 pr-10" />
+              <button type="button" @click="showConfirmPassword = !showConfirmPassword"
+                class="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#111] transition-colors">
+                <Icon :name="showConfirmPassword ? 'mdi:eye-off-outline' : 'mdi:eye-outline'" class="text-lg" />
+              </button>
             </div>
 
-            <div class="space-y-2">
-              <label class="block text-[10px] font-black text-gray-900 uppercase tracking-widest">New Password</label>
-              <div class="relative">
-                <Icon name="ph:lock-key" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                <input v-model="passwordForm.password" :type="showNewPassword ? 'text' : 'password'" required
-                  minlength="8"
-                  class="w-full pl-11 pr-12 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 text-sm font-bold bg-white outline-none transition-all" />
-                <button type="button" @click="showNewPassword = !showNewPassword"
-                  class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary transition-colors">
-                  <Icon :name="showNewPassword ? 'ph:eye-slash-bold' : 'ph:eye-bold'" class="text-lg" />
-                </button>
-              </div>
-            </div>
-
-            <div class="space-y-2">
-              <label class="block text-[10px] font-black text-gray-900 uppercase tracking-widest">Confirm New
-                Password</label>
-              <div class="relative">
-                <Icon name="ph:check-square-offset" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                <input v-model="passwordForm.password_confirmation" :type="showConfirmPassword ? 'text' : 'password'"
-                  required minlength="8"
-                  class="w-full pl-11 pr-12 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 text-sm font-bold bg-white outline-none transition-all" />
-                <button type="button" @click="showConfirmPassword = !showConfirmPassword"
-                  class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary transition-colors">
-                  <Icon :name="showConfirmPassword ? 'ph:eye-slash-bold' : 'ph:eye-bold'" class="text-lg" />
-                </button>
-              </div>
-
-              <p v-if="passwordForm.password_confirmation" class="text-[10px] font-black uppercase tracking-widest mt-1"
-                :class="passwordsMatch ? 'text-green-500' : 'text-red-500'">
-                <Icon :name="passwordsMatch ? 'ph:check-circle-fill' : 'ph:x-circle-fill'" class="mb-0.5 inline" />
-                {{ passwordsMatch ? 'Passwords match' : 'Passwords do not match' }}
-              </p>
-            </div>
+            <p v-if="passwordForm.password_confirmation" class="font-jost text-[11px] tracking-[1px] uppercase mt-2"
+              :class="passwordsMatch ? 'text-green-600' : 'text-red-500'">
+              {{ passwordsMatch ? 'Passwords match' : 'Passwords do not match' }}
+            </p>
           </div>
 
           <div class="mt-8">
             <button type="submit" :disabled="passwordLoading || !passwordsMatch || !passwordForm.current_password"
-              class="w-full sm:w-auto px-8 py-3.5 bg-gray-900 text-white rounded-xl font-black uppercase tracking-widest shadow-lg hover:shadow-xl hover:bg-gray-800 active:scale-95 transition-all text-xs disabled:opacity-50 disabled:scale-100 flex items-center justify-center gap-2">
-              <Icon v-if="passwordLoading" name="ph:spinner-gap" class="animate-spin text-base" />
-              <Icon v-else name="ph:shield-check-fill" class="text-base" />
+              class="px-10 py-4 bg-[#111] text-white font-jost text-[12px] font-medium tracking-[2px] uppercase border border-[#111] hover:bg-transparent hover:text-[#111] transition-colors disabled:opacity-30 disabled:hover:bg-[#111] disabled:hover:text-white flex items-center gap-3">
+              <Icon v-if="passwordLoading" name="mdi:loading" class="animate-spin text-base" />
               {{ passwordLoading ? 'Updating...' : 'Update Password' }}
             </button>
           </div>

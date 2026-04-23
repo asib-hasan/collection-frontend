@@ -8,7 +8,26 @@ const props = defineProps({
   }
 });
 
-const { data: ordersData, refresh } = await useAPI<any>("/frontend/v1/get-user-order");
+const ordersData = ref([
+  {
+    id: 1,
+    order_code: "ORD-2025-C102",
+    order_status: "shipped",
+    created_at: "2025-04-10T10:00:00Z",
+  },
+  {
+    id: 2,
+    order_code: "ORD-2025-B943",
+    order_status: "process",
+    created_at: "2025-04-20T14:30:00Z",
+  },
+  {
+    id: 3,
+    order_code: "ORD-2025-D456",
+    order_status: "delivered",
+    created_at: "2025-03-15T09:15:00Z",
+  }
+]);
 const orders = computed(() => ordersData.value || []);
 const toast = useToast();
 
@@ -140,25 +159,28 @@ const trackingSteps = computed(() => {
 
 <template>
   <div class="h-full flex flex-col">
-    <div class="flex items-center gap-3 mb-8">
-      <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-        <Icon name="ph:truck-duotone" class="text-primary text-2xl" />
-      </div>
-      <div>
-        <h2 class="text-2xl font-black text-gray-900">Track Your Order</h2>
-        <p class="text-sm text-gray-500 font-medium mt-0.5">Enter your tracking ID to see real-time updates.</p>
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10 pb-4 border-b border-gray-100">
+      <div class="flex items-center gap-4">
+        <div class="w-10 h-10 flex items-center justify-center border border-gray-200 text-[#111]">
+          <Icon name="mdi:truck-outline" class="text-xl" />
+        </div>
+        <div>
+          <h2 class="font-cinzel text-2xl tracking-widest text-[#111] uppercase">Track Your Order</h2>
+          <p class="font-jost text-[13px] text-gray-500 tracking-wide mt-1">Enter your tracking ID to see real-time updates.</p>
+        </div>
       </div>
     </div>
 
     <!-- Recent Orders (Quick Select) -->
     <div v-if="orders.length > 0 && !showResult" class="mb-8">
-      <p class="text-xs font-black text-gray-400 uppercase tracking-widest mb-4">Your Recent Orders</p>
+      <p class="font-jost text-[10px] font-medium uppercase tracking-[2px] text-gray-400 mb-4">Your Recent Orders</p>
       <div class="flex flex-wrap gap-3">
         <button 
           v-for="order in orders.slice(0, 5)" 
           :key="order.id"
           @click="trackingId = order.order_code; handleTrackOrder()"
-          class="px-4 py-2 bg-white border border-gray-100 rounded-xl text-xs font-bold text-gray-600 hover:border-primary hover:text-primary transition-all shadow-sm"
+          class="px-5 py-2.5 bg-white border border-gray-200 font-jost text-[11px] font-medium tracking-[2px] uppercase text-[#111] hover:border-[#111] hover:bg-[#fbfaf8] transition-colors"
         >
           {{ order.order_code }}
         </button>
@@ -166,25 +188,24 @@ const trackingSteps = computed(() => {
     </div>
 
     <!-- Tracking Input Form -->
-    <div class="bg-gray-50 rounded-2xl p-6 md:p-8 border border-gray-100 mb-8">
+    <div class="bg-[#fbfaf8] border border-gray-100 p-8 mb-10">
       <form @submit.prevent="handleTrackOrder" class="flex flex-col sm:flex-row gap-4">
         <div class="relative flex-1">
-          <Icon name="mdi:barcode-scan" class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl" />
           <input 
             v-model="trackingId"
             type="text" 
-            placeholder="Enter Order ID (e.g. LOOM-123456)" 
-            class="w-full pl-12 pr-4 py-3.5 rounded-xl border-2 border-gray-200 bg-white text-gray-900 text-sm font-bold focus:outline-none focus:border-primary transition-colors"
+            placeholder="ENTER ORDER ID (E.G. LOOM-123456)" 
+            class="w-full px-4 py-4 border border-gray-200 bg-white font-jost text-[13px] tracking-wide text-[#111] focus:outline-none focus:border-[#111] transition-colors placeholder-gray-400"
           />
         </div>
         <button 
           type="submit"
           :disabled="isTracking || !trackingId.trim()"
-          class="bg-gradient-to-r from-primary to-secondary text-white font-black px-8 py-3.5 rounded-xl shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 flex items-center justify-center gap-2 text-sm disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none shrink-0"
+          class="bg-[#111] text-white px-10 py-4 border border-[#111] hover:bg-transparent hover:text-[#111] transition-colors duration-300 font-jost text-[12px] font-medium tracking-[2px] uppercase flex items-center justify-center gap-3 disabled:opacity-50 disabled:hover:bg-[#111] disabled:hover:text-white shrink-0"
         >
-          <Icon v-if="isTracking" name="mdi:loading" class="text-xl animate-spin" />
-          <Icon v-else name="mdi:crosshairs-gps" class="text-xl" />
-          {{ isTracking ? 'Tracking...' : 'Track Order' }}
+          <Icon v-if="isTracking" name="mdi:loading" class="text-lg animate-spin" />
+          <Icon v-else name="mdi:crosshairs-gps" class="text-lg" />
+          {{ isTracking ? 'TRACKING...' : 'TRACK ORDER' }}
         </button>
       </form>
     </div>
@@ -194,27 +215,25 @@ const trackingSteps = computed(() => {
       <div v-if="showResult" class="flex-1">
         
         <!-- Summary Header -->
-        <div class="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-6 text-white shadow-xl mb-10 border border-gray-700 relative overflow-hidden">
-          <Icon name="ph:package-duotone" class="absolute -right-4 -bottom-6 text-[120px] text-white/5 pointer-events-none" />
-          
+        <div class="bg-white border border-gray-200 p-8 mb-10 relative overflow-hidden">
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
             <div>
-              <p class="text-gray-400 font-bold text-xs uppercase tracking-wider mb-1">Tracking Number</p>
-              <div class="flex items-center gap-3">
-                <h3 class="text-2xl font-black font-mono tracking-tight">{{ trackedOrder?.order_code }}</h3>
+              <p class="font-jost text-[10px] font-medium uppercase tracking-[2px] text-gray-400 mb-2">Tracking Number</p>
+              <div class="flex items-center gap-4">
+                <h3 class="font-cinzel text-2xl tracking-widest text-[#111] uppercase">{{ trackedOrder?.order_code }}</h3>
                 <span 
-                  class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-1.5 border"
-                  :class="trackedOrder?.order_status == 'delivered' ? 'bg-green-500/20 text-green-400 border-green-500/30' : 'bg-primary/20 text-primary border-primary/30'"
+                  class="px-3 py-1 font-jost text-[10px] font-medium uppercase tracking-[2px] border bg-white flex items-center gap-2"
+                  :class="trackedOrder?.order_status == 'delivered' ? 'border-green-200 text-green-700' : 'border-[#d4929f] text-[#d4929f]'"
                 >
-                  <span class="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
+                  <span v-if="trackedOrder?.order_status !== 'delivered'" class="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
                   {{ trackedOrder?.order_status }}
                 </span>
               </div>
             </div>
             <div class="text-left md:text-right">
-              <p class="text-gray-400 font-bold text-xs uppercase tracking-wider mb-1">Order Date</p>
-              <h3 class="text-xl font-bold text-secondary">
-                {{ new Date(trackedOrder?.created_at).toLocaleDateString("en-US", { month: 'short', day: 'numeric', year: 'numeric' }) }}
+              <p class="font-jost text-[10px] font-medium uppercase tracking-[2px] text-gray-400 mb-2">Order Date</p>
+              <h3 class="font-jost text-[16px] text-[#111] tracking-wide uppercase">
+                {{ new Date(trackedOrder?.created_at).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric' }) }}
               </h3>
             </div>
           </div>
@@ -222,38 +241,38 @@ const trackingSteps = computed(() => {
 
         <!-- Timeline -->
         <div class="pl-2 md:pl-8">
-          <div class="relative border-l-2 border-dashed border-gray-200 pb-4">
+          <div class="relative border-l border-gray-200 pb-4">
             
             <div 
               v-for="(step, index) in trackingSteps" 
               :key="step.id"
-              class="relative pl-8 md:pl-12 pb-10 last:pb-0"
+              class="relative pl-10 md:pl-16 pb-12 last:pb-0"
             >
               <!-- Connection Line active filler -->
-              <div v-if="step.completed && index !== trackingSteps.length - 1" class="absolute top-8 left-[-2px] w-[2px] h-full bg-primary -ml-[0px]"></div>
+              <div v-if="step.completed && index !== trackingSteps.length - 1" class="absolute top-6 left-[-1px] w-[2px] h-full bg-[#111]"></div>
 
               <!-- Node Icon -->
               <div 
-                class="absolute left-0 top-0 -translate-x-[50%] w-10 h-10 rounded-full flex items-center justify-center ring-4 ring-white shadow-sm transition-all duration-300"
-                :class="step.completed ? 'bg-gradient-to-br from-primary to-secondary text-white shadow-primary/30' : 'bg-gray-100 text-gray-400 border-2 border-gray-200'"
+                class="absolute left-0 top-0 -translate-x-[50%] w-10 h-10 flex items-center justify-center bg-white transition-all duration-300 border"
+                :class="step.completed ? 'border-[#111] text-[#111]' : 'border-gray-200 text-gray-300'"
               >
-                <Icon :name="step.completed ? step.icon : 'mdi:circle-outline'" class="text-xl" />
+                <Icon :name="step.completed ? step.icon : 'mdi:circle-small'" :class="step.completed ? 'text-lg' : 'text-3xl'" />
               </div>
 
               <!-- Content Row -->
-              <div class="bg-white rounded-xl p-5 border transition-all duration-300 transform"
-                :class="step.completed ? 'border-primary/20 shadow-md shadow-primary/5 hover:-translate-y-1' : 'border-gray-100 opacity-60'">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-                  <h4 class="font-black text-gray-900 text-base flex items-center gap-2">
+              <div class="bg-white border p-6 transition-all duration-300 group"
+                :class="step.completed ? 'border-gray-200 hover:border-[#111]' : 'border-gray-100 opacity-60'">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
+                  <h4 class="font-cinzel text-[16px] tracking-widest uppercase flex items-center gap-3" :class="step.completed ? 'text-[#111]' : 'text-gray-400'">
                     {{ step.status }}
-                    <Icon v-if="step.completed && index == 2" name="mdi:check-decagram" class="text-green-500 w-4 h-4" />
                   </h4>
-                  <span class="text-xs font-bold px-3 py-1 bg-gray-50 rounded-lg text-gray-500 border border-gray-100 flex items-center gap-1.5">
-                    <Icon name="mdi:calendar-clock-outline" />
+                  <span class="font-jost text-[11px] font-medium uppercase tracking-[2px] text-gray-400">
                     {{ step.date }}
                   </span>
                 </div>
-                <p class="text-sm text-gray-500 font-medium leading-relaxed">{{ step.description }}</p>
+                <p class="font-jost text-[14px] text-gray-500 leading-relaxed italic" :class="{'text-gray-400': !step.completed}">
+                  "{{ step.description }}"
+                </p>
               </div>
 
             </div>
@@ -262,10 +281,14 @@ const trackingSteps = computed(() => {
       </div>
       
       <!-- Empty State -->
-      <div v-else class="flex-1 flex flex-col items-center justify-center text-center py-16 opacity-50">
-        <Icon name="ph:package-duotone" class="text-8xl text-gray-300 mb-4" />
-        <h3 class="text-xl font-bold text-gray-400">No Tracking Information</h3>
-        <p class="text-sm text-gray-400 mt-2 max-w-xs">Enter your tracking number above to see the current status of your shipment.</p>
+      <div v-else class="flex-1 flex flex-col items-center justify-center text-center py-20 bg-white border border-gray-100 animate-fade-in-up mt-8">
+        <div class="w-16 h-16 flex items-center justify-center border border-gray-200 mb-6 bg-[#fbfaf8]">
+          <Icon name="mdi:package-variant" class="text-2xl text-gray-400" />
+        </div>
+        <h3 class="font-cinzel text-xl tracking-widest text-[#111] uppercase mb-3">No Tracking Information</h3>
+        <p class="font-jost text-[14px] text-gray-500 tracking-wide max-w-sm mb-8">
+          Enter your tracking number above to see the current status of your shipment.
+        </p>
       </div>
     </Transition>
 
