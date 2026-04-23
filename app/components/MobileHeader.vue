@@ -30,42 +30,25 @@ const handleSearch = () => {
   }
 };
 
-const collections = [
-  {
-    name: "Prom Dresses",
-    subcategories: ["Mermaid", "Ball Gown", "A-Line", "Two-Piece"]
-  },
-  {
-    name: "Wedding",
-    subcategories: ["Bridal Gowns", "Bridesmaids", "Mother of the Bride"]
-  },
-  {
-    name: "Evening & Gala",
-    subcategories: ["Long Sleeve", "Off-Shoulder", "Sequins", "Velvet"]
-  },
-  {
-    name: "Quinceañera",
-    subcategories: ["Sweet 16", "Ruffled", "Corset Back"]
-  }
-];
-
-const mainLinks = computed(() => [
-  { name: 'HOME', to: '/' },
-  { name: 'NEW ARRIVALS', to: '/products' },
+const mainNavLinks = [
+  { name: '2026 COLLECTION', to: '/products?category=2026+Collection' },
+  { name: 'JUST ARRIVED', to: '/products?category=Just+Arrived' },
+  { name: 'PROMOTION', to: '/products?promotion=true' },
+  { name: 'BRANDS', to: '/brands' },
+  { name: 'PROM', to: '/products?category=Prom' },
+  { name: 'BRIDAL', to: '/products?category=Bridal' },
+  { name: 'QUINCEANERA', to: '/products?category=Quinceanera' },
   { name: 'HOMECOMING', to: '/products?category=Homecoming' },
-  { name: 'WEDDING', to: '/products?category=Bridal' },
-  isLoggedIn.value 
-    ? { name: 'MY ACCOUNT', to: '/dashboard' } 
-    : { name: 'LOGIN / REGISTER', to: '/auth/login' }
-]);
+  { name: 'KIDS', to: '/products?category=Kids' },
+  { name: 'COLLECTIONS', to: '/collections' },
+  { name: 'BLOG', to: '/blog' },
+  { name: 'CONTACT US', to: '/contact' },
+  { name: 'STORES', to: '/stores' }
+];
 </script>
 
 <template>
   <div class="cc-mobile-header relative z-[60]">
-    <div class="mobile-topbar text-center py-2 px-1 text-[11px] text-white tracking-widest font-normal uppercase"
-      style="background: #111; font-family: 'Jost', sans-serif;">
-      FREE STANDARD SHIPPING ON U.S. ORDERS OVER $200
-    </div>
     <div
       class="header-main flex items-center justify-between px-4 py-2 bg-white border-b border-gray-100 shadow-sm relative z-30">
       <!-- Burger -->
@@ -79,9 +62,8 @@ const mainLinks = computed(() => [
       </button>
 
       <!-- Logo -->
-      <NuxtLink to="/" class="mobile-logo">
-        <img src="/images/logo-transparent.png" alt="CCollection"
-          style="height: 55px; mix-blend-mode: multiply; object-fit: contain;" />
+      <NuxtLink to="/" class="mobile-logo text-[22px] font-bold tracking-[0.08em] text-black uppercase" style="font-family: 'Jost', sans-serif;">
+        CCOLLECTION
       </NuxtLink>
 
       <!-- Right actions -->
@@ -139,7 +121,9 @@ const mainLinks = computed(() => [
       class="mobile-drawer fixed top-0 left-0 h-full bg-white z-50 w-[85%] max-w-sm flex flex-col transition-transform duration-300 transform"
       :class="isDrawerOpen ? 'translate-x-0' : '-translate-x-full'">
       <div class="drawer-header flex items-center justify-between p-4 border-b border-gray-100 bg-[#fbfaf8]">
-        <img src="/images/logo-transparent.png" alt="CCollection" style="height: 45px; mix-blend-mode: multiply;" />
+        <NuxtLink to="/" class="text-[20px] font-bold tracking-[0.08em] text-black uppercase" style="font-family: 'Jost', sans-serif;" @click="toggleDrawer">
+          CCOLLECTION
+        </NuxtLink>
         <button @click="toggleDrawer" class="text-gray-500 hover:text-black">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
@@ -149,26 +133,16 @@ const mainLinks = computed(() => [
         </button>
       </div>
       <div class="drawer-body flex-1 overflow-y-auto p-6 font-jost" style="font-family: 'Jost', sans-serif;">
-        <!-- All Collections Accordion approach -->
         <div class="mb-4">
-          <h3 class="text-xs font-semibold text-gray-400 mb-4 tracking-widest uppercase"
-            style="font-family: 'Cinzel', serif;">All Collections</h3>
-          <div v-for="col in collections" :key="col.name" class="mb-6">
-            <NuxtLink to="/products" class="block font-medium text-[15px] mb-3 text-[#d4929f] uppercase tracking-wide">{{
-              col.name }}</NuxtLink>
-            <div class="pl-4 flex flex-col gap-3 border-l-2 border-pink-50">
-              <NuxtLink v-for="sub in col.subcategories" :key="sub" to="/products"
-                class="text-[14px] text-gray-600 block hover:text-[#d4929f]">{{ sub }}</NuxtLink>
-            </div>
-          </div>
+          <NuxtLink v-for="link in mainNavLinks" :key="link.name" :to="link.to"
+            class="block font-medium text-[14px] mb-5 uppercase text-[#111] hover:text-[#d4929f] tracking-wide" @click="toggleDrawer">
+            {{ link.name }}
+          </NuxtLink>
         </div>
         <div class="divider h-px bg-gray-100 my-6"></div>
         <div>
-          <h3 class="text-xs font-semibold text-gray-400 mb-4 tracking-widest uppercase"
-            style="font-family: 'Cinzel', serif;">Navigate</h3>
-          <NuxtLink v-for="link in mainLinks" :key="link.name" :to="link.to"
-            class="block font-medium text-[14px] mb-4 uppercase text-[#111] hover:text-[#d4929f] tracking-wide">{{
-              link.name }}</NuxtLink>
+           <NuxtLink v-if="!isLoggedIn" to="/auth/login" @click="toggleDrawer" class="block font-medium text-[14px] mb-4 uppercase text-[#111] hover:text-[#d4929f] tracking-wide">LOGIN</NuxtLink>
+           <NuxtLink v-else to="/dashboard" @click="toggleDrawer" class="block font-medium text-[14px] mb-4 uppercase text-[#111] hover:text-[#d4929f] tracking-wide">MY ACCOUNT</NuxtLink>
         </div>
       </div>
       <div class="drawer-footer p-4 border-t border-gray-100 bg-gray-50 flex justify-center gap-6">

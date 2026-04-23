@@ -8,6 +8,11 @@ const selectedSizes = ref<string[]>([])
 const selectedColors = ref<string[]>([])
 const maxPrice = ref(5000)
 
+const isMobileFilterOpen = ref(false)
+const toggleMobileFilter = () => {
+  isMobileFilterOpen.value = !isMobileFilterOpen.value
+}
+
 const searchQueryStr = computed(() => route.query.search as string || '')
 
 watch(() => route.query.category, (newCat) => {
@@ -221,11 +226,29 @@ const setPage = (page: number) => {
       </div>
 
       <div class="flex flex-col lg:flex-row gap-12">
+        <!-- Filter Drawer Overlay (Mobile) -->
+        <transition name="fade">
+          <div v-if="isMobileFilterOpen" class="fixed inset-0 bg-black/60 z-[60] lg:hidden backdrop-blur-sm" @click="toggleMobileFilter"></div>
+        </transition>
+
         <!-- Sidebar Filters -->
-        <aside class="w-full lg:w-[280px] flex-shrink-0">
-          <div class="sticky top-24 space-y-10">
+        <aside 
+          class="fixed lg:static top-0 right-0 h-full lg:h-auto w-[85%] max-w-sm lg:w-[280px] bg-white lg:bg-transparent z-[70] lg:z-auto transition-transform duration-300 transform lg:transform-none flex-shrink-0 flex flex-col shadow-2xl lg:shadow-none"
+          :class="isMobileFilterOpen ? 'translate-x-0' : 'translate-x-full lg:translate-x-0'"
+        >
+          <!-- Mobile Drawer Header -->
+          <div class="lg:hidden flex items-center justify-between p-4 border-b border-gray-100 bg-[#fbfaf8] flex-shrink-0">
+            <h2 class="font-cinzel text-lg font-semibold tracking-wider text-[#111] uppercase flex items-center gap-2">
+              <Icon name="mdi:tune-variant" class="text-xl" /> Filters
+            </h2>
+            <button @click="toggleMobileFilter" class="text-gray-500 hover:text-black p-2">
+              <Icon name="mdi:close" class="text-2xl" />
+            </button>
+          </div>
+
+          <div class="p-6 lg:p-0 lg:sticky top-24 space-y-10 flex-1 overflow-y-auto lg:overflow-visible">
             
-            <div class="flex items-center justify-between pb-4 border-b border-gray-200">
+            <div class="hidden lg:flex items-center justify-between pb-4 border-b border-gray-200">
               <h2 class="font-cinzel text-lg font-semibold tracking-wider text-[#111] uppercase flex items-center gap-2">
                 <Icon name="mdi:tune-variant" class="text-xl" /> Filters
               </h2>
@@ -312,6 +335,16 @@ const setPage = (page: number) => {
               </div>
             </div>
 
+            <!-- Mobile Drawer Footer Actions -->
+            <div class="lg:hidden mt-8 pt-6 border-t border-gray-100 pb-10">
+              <button @click="clearFilters" class="w-full py-3 mb-3 border border-gray-200 font-jost text-xs font-medium tracking-widest uppercase text-gray-600 hover:text-[#d4929f] hover:border-[#d4929f] transition-colors rounded">
+                Clear All Filters
+              </button>
+              <button @click="toggleMobileFilter" class="w-full py-3 bg-[#111] text-white font-jost text-xs font-medium tracking-widest uppercase hover:bg-[#d4929f] transition-colors rounded">
+                Apply Filters
+              </button>
+            </div>
+
           </div>
         </aside>
 
@@ -324,8 +357,14 @@ const setPage = (page: number) => {
               Showing <span class="text-[#d4929f] font-medium">{{ paginatedProducts.length }}</span> of <span class="text-[#111] font-medium">{{ filteredProducts.length }}</span> Results
             </p>
             
-            <div class="flex items-center gap-3">
-              <span class="font-jost text-xs font-medium tracking-widest uppercase text-gray-500">Sort by:</span>
+            <div class="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+              <!-- Mobile Filter Button -->
+              <button @click="toggleMobileFilter" class="lg:hidden flex items-center gap-2 font-jost text-xs font-medium tracking-widest uppercase text-gray-800 hover:text-[#d4929f] transition-colors py-2 px-3 border border-gray-200 rounded">
+                <Icon name="mdi:tune-variant" class="text-lg" /> Filter
+              </button>
+
+              <div class="flex items-center gap-2">
+                <span class="font-jost text-xs font-medium tracking-widest uppercase text-gray-500 hidden sm:block">Sort by:</span>
               <div class="relative">
                 <select 
                   v-model="sortOption" 
