@@ -164,7 +164,7 @@ const averageRating = computed(() => {
         <Icon :name="isInWishlist ? 'mdi:heart' : 'mdi:heart-outline'" class="text-base sm:text-xl" />
       </button>
       <NuxtLink
-        :to="`/Products/${product.slug}`"
+        :to="`/products/${product.slug}`"
         class="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center text-gray-700 hover:text-primary hover:bg-gray-50 shadow-md transition-colors"
       >
         <Icon name="mdi:eye-outline" class="text-base sm:text-xl" />
@@ -176,7 +176,7 @@ const averageRating = computed(() => {
       class="relative w-full aspect-[3/4] overflow-hidden bg-gray-50 cursor-pointer"
     >
       <!-- Default Image -->
-      <NuxtLink :to="`/Products/${product.slug}`">
+      <NuxtLink :to="`/products/${product.slug}`">
         <img
           :src="product.cover_image_url"
           :alt="product.title"
@@ -223,7 +223,7 @@ const averageRating = computed(() => {
         >
       </div>
 
-      <NuxtLink :to="`/Products/${product.slug}`">
+      <NuxtLink :to="`/products/${product.slug}`">
         <h3
           class="font-bold text-gray-900 text-sm sm:text-base md:text-lg leading-tight mb-1 cursor-pointer hover:text-primary transition-colors line-clamp-2"
         >

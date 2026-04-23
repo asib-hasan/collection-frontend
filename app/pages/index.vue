@@ -14,8 +14,8 @@ useHead({ title: "CCollection - Luxury Dresses for Prom, Wedding & More" });
             <h1 class="hero-title">THE 2026 COLLECTION</h1>
             <p class="hero-subtitle">Discover luxury styles engineered for your unforgettable moments.</p>
             <div class="hero-buttons">
-               <NuxtLink to="/" class="cc-btn primary">SHOP PROM</NuxtLink>
-               <NuxtLink to="/" class="cc-btn outline">SHOP WEDDING</NuxtLink>
+               <NuxtLink to="/products?category=Prom+2026" class="cc-btn primary">SHOP PROM</NuxtLink>
+               <NuxtLink to="/products?category=Bridal" class="cc-btn outline">SHOP WEDDING</NuxtLink>
             </div>
          </div>
          <div class="hero-overlay"></div>
@@ -28,25 +28,25 @@ useHead({ title: "CCollection - Luxury Dresses for Prom, Wedding & More" });
             <div class="heading-line"></div>
          </div>
          <div class="category-grid">
-            <NuxtLink to="/" class="cat-card">
+            <NuxtLink to="/products?category=Prom+2026" class="cat-card">
                <div class="cat-img-wrapper">
                   <img src="/images/image2.webp" alt="Prom 2026" />
                </div>
                <div class="cat-label"><span>PROM 2026</span></div>
             </NuxtLink>
-            <NuxtLink to="/" class="cat-card">
+            <NuxtLink to="/products?category=Homecoming" class="cat-card">
                <div class="cat-img-wrapper">
                   <img src="/images/image5.webp" alt="Homecoming" />
                </div>
                <div class="cat-label"><span>HOMECOMING</span></div>
             </NuxtLink>
-            <NuxtLink to="/" class="cat-card">
+            <NuxtLink to="/products?category=Bridal" class="cat-card">
                <div class="cat-img-wrapper">
                   <img src="/images/image10.webp" alt="Bridal" />
                </div>
                <div class="cat-label"><span>BRIDAL</span></div>
             </NuxtLink>
-            <NuxtLink to="/" class="cat-card">
+            <NuxtLink to="/products?category=Evening" class="cat-card">
                <div class="cat-img-wrapper">
                   <img src="/images/image43.webp" alt="Evening Gowns" />
                </div>
@@ -62,7 +62,7 @@ useHead({ title: "CCollection - Luxury Dresses for Prom, Wedding & More" });
             <div class="heading-line"></div>
          </div>
          <div class="product-grid">
-            <NuxtLink :to="'/Products/GL3674'" class="product-card">
+            <NuxtLink :to="'/products/GL3674'" class="product-card">
                <div class="product-img">
                   <img src="/images/image6.webp" alt="Gown" class="img-front" />
                   <img src="/images/image7.webp" alt="Gown Hover" class="img-hover" />
@@ -73,7 +73,7 @@ useHead({ title: "CCollection - Luxury Dresses for Prom, Wedding & More" });
                   <span class="price">$520.00</span>
                </div>
             </NuxtLink>
-            <NuxtLink :to="'/Products/GL3675'" class="product-card">
+            <NuxtLink :to="'/products/GL3675'" class="product-card">
                <div class="product-img">
                   <img src="/images/image8.webp" alt="Gown" class="img-front" />
                   <img src="/images/image9.webp" alt="Gown Hover" class="img-hover" />
@@ -84,7 +84,7 @@ useHead({ title: "CCollection - Luxury Dresses for Prom, Wedding & More" });
                   <span class="price">$390.00</span>
                </div>
             </NuxtLink>
-            <NuxtLink :to="'/Products/GL3676'" class="product-card">
+            <NuxtLink :to="'/products/GL3676'" class="product-card">
                <div class="product-img">
                   <img src="/images/image16.webp" alt="Gown" class="img-front" />
                   <img src="/images/image17.webp" alt="Gown Hover" class="img-hover" />
@@ -95,7 +95,7 @@ useHead({ title: "CCollection - Luxury Dresses for Prom, Wedding & More" });
                   <span class="price">$310.00</span>
                </div>
             </NuxtLink>
-            <NuxtLink :to="'/Products/GL3677'" class="product-card hidden-mobile">
+            <NuxtLink :to="'/products/GL3677'" class="product-card hidden-mobile">
                <div class="product-img">
                   <img src="/images/image19.webp" alt="Gown" class="img-front" />
                   <img src="/images/image20.webp" alt="Gown Hover" class="img-hover" />
@@ -124,14 +124,14 @@ useHead({ title: "CCollection - Luxury Dresses for Prom, Wedding & More" });
             <img src="/images/quinceanera-banner.webp" alt="Quinceanera" class="banner-img" />
             <div class="banner-info">
                <h3>QUINCEAÑERA</h3>
-               <NuxtLink to="/" class="cc-link">EXPLORE THE COLLECTION</NuxtLink>
+               <NuxtLink to="/products" class="cc-link">EXPLORE THE COLLECTION</NuxtLink>
             </div>
          </div>
          <div class="banner-box">
             <img src="/images/wedding-2026.webp" alt="Wedding" class="banner-img" />
             <div class="banner-info">
                <h3>BRIDAL EXCLUSIVES</h3>
-               <NuxtLink to="/" class="cc-link">SHOP NOW</NuxtLink>
+               <NuxtLink to="/products?category=Bridal" class="cc-link">SHOP NOW</NuxtLink>
             </div>
          </div>
       </section>
@@ -143,31 +143,31 @@ useHead({ title: "CCollection - Luxury Dresses for Prom, Wedding & More" });
             <div class="heading-line"></div>
          </div>
          <div class="style-circle-grid">
-            <NuxtLink to="/" class="style-circle">
+            <NuxtLink to="/products" class="style-circle">
                <div class="circle-img">
                   <img src="/images/image22.webp" alt="Mermaid" />
                </div>
                <span>MERMAID</span>
             </NuxtLink>
-            <NuxtLink to="/" class="style-circle">
+            <NuxtLink to="/products" class="style-circle">
                <div class="circle-img">
                   <img src="/images/image29.webp" alt="A-Line" />
                </div>
                <span>A-LINE</span>
             </NuxtLink>
-            <NuxtLink to="/" class="style-circle">
+            <NuxtLink to="/products" class="style-circle">
                <div class="circle-img">
                   <img src="/images/image48.webp" alt="Ball Gown" />
                </div>
                <span>BALL GOWN</span>
             </NuxtLink>
-            <NuxtLink to="/" class="style-circle">
+            <NuxtLink to="/products" class="style-circle">
                <div class="circle-img">
                   <img src="/images/image52.webp" alt="Fitted" />
                </div>
                <span>FITTED</span>
             </NuxtLink>
-            <NuxtLink to="/" class="style-circle">
+            <NuxtLink to="/products" class="style-circle">
                <div class="circle-img">
                   <img src="/images/image36.webp" alt="Two-Piece" />
                </div>
@@ -187,7 +187,7 @@ useHead({ title: "CCollection - Luxury Dresses for Prom, Wedding & More" });
             <p>Draped in sophistication. Step out in our exclusive gala-ready collection designed to make endless
                impressions.</p>
             <div class="mt-4">
-               <NuxtLink to="/" class="cc-btn primary">DISCOVER MORE</NuxtLink>
+               <NuxtLink to="/products" class="cc-btn primary">DISCOVER MORE</NuxtLink>
             </div>
          </div>
       </section>
@@ -199,7 +199,7 @@ useHead({ title: "CCollection - Luxury Dresses for Prom, Wedding & More" });
             <div class="heading-line"></div>
          </div>
          <div class="product-grid">
-            <NuxtLink :to="'/Products/GL3670'" class="product-card">
+            <NuxtLink :to="'/products/GL3670'" class="product-card">
                <div class="product-img">
                   <img src="/images/image12.webp" alt="Gown" class="img-front" />
                   <img src="/images/image15.webp" alt="Gown Hover" class="img-hover" />
@@ -210,7 +210,7 @@ useHead({ title: "CCollection - Luxury Dresses for Prom, Wedding & More" });
                   <span class="price">$350.00</span>
                </div>
             </NuxtLink>
-            <NuxtLink :to="'/Products/GL3671'" class="product-card">
+            <NuxtLink :to="'/products/GL3671'" class="product-card">
                <div class="product-img">
                   <img src="/images/image21.webp" alt="Gown" class="img-front" />
                   <img src="/images/image25.webp" alt="Gown Hover" class="img-hover" />
@@ -221,7 +221,7 @@ useHead({ title: "CCollection - Luxury Dresses for Prom, Wedding & More" });
                   <span class="price">$420.00</span>
                </div>
             </NuxtLink>
-            <NuxtLink :to="'/Products/GL3672'" class="product-card">
+            <NuxtLink :to="'/products/GL3672'" class="product-card">
                <div class="product-img">
                   <img src="/images/image30.webp" alt="Gown" class="img-front" />
                   <img src="/images/image32.webp" alt="Gown Hover" class="img-hover" />
@@ -232,7 +232,7 @@ useHead({ title: "CCollection - Luxury Dresses for Prom, Wedding & More" });
                   <span class="price">$280.00</span>
                </div>
             </NuxtLink>
-            <NuxtLink :to="'/Products/GL3673'" class="product-card hidden-mobile">
+            <NuxtLink :to="'/products/GL3673'" class="product-card hidden-mobile">
                <div class="product-img">
                   <img src="/images/image40.webp" alt="Gown" class="img-front" />
                   <img src="/images/image45.webp" alt="Gown Hover" class="img-hover" />
@@ -245,7 +245,7 @@ useHead({ title: "CCollection - Luxury Dresses for Prom, Wedding & More" });
             </NuxtLink>
          </div>
          <div class="center-btn">
-            <NuxtLink to="/" class="cc-btn outline dark">VIEW ALL ARRIVALS</NuxtLink>
+            <NuxtLink to="/products" class="cc-btn outline dark">VIEW ALL ARRIVALS</NuxtLink>
          </div>
       </section>
    </div>

@@ -1,5 +1,9 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, computed } from 'vue';
+import { useCartStore } from '~/stores/cart';
+
+const cartStore = useCartStore();
+const cartCount = computed(() => cartStore.cartCount);
 
 const collections = [
   {
@@ -77,19 +81,19 @@ onUnmounted(() => {
         </div>
         <div class="cc-nav-left">
           <div class="nav-item has-dropdown">
-            <NuxtLink to="/">ALL COLLECTION</NuxtLink>
+            <NuxtLink to="/products">ALL COLLECTION</NuxtLink>
             <div class="dropdown-mega">
               <div class="mega-row">
                 <div class="mega-col" v-for="col in collections" :key="col.name">
                   <h4>{{ col.name }}</h4>
-                  <NuxtLink v-for="sub in col.subcategories" :key="sub" to="/">{{ sub }}</NuxtLink>
+                  <NuxtLink v-for="sub in col.subcategories" :key="sub" to="/products">{{ sub }}</NuxtLink>
                 </div>
               </div>
             </div>
           </div>
-          <NuxtLink to="/">PROM</NuxtLink>
-          <NuxtLink to="/">HOMECOMING</NuxtLink>
-          <NuxtLink to="/">WEDDING</NuxtLink>
+          <NuxtLink to="/products?category=Prom+2026">PROM</NuxtLink>
+          <NuxtLink to="/products?category=Homecoming">HOMECOMING</NuxtLink>
+          <NuxtLink to="/products?category=Bridal">WEDDING</NuxtLink>
         </div>
         <div class="cc-nav-right">
           <div class="nav-search-bar">
@@ -101,8 +105,8 @@ onUnmounted(() => {
               </svg>
             </button>
           </div>
-          <NuxtLink to="/">LOGIN</NuxtLink>
-          <NuxtLink to="/">BAG (0)</NuxtLink>
+          <NuxtLink to="/auth/login">LOGIN</NuxtLink>
+          <NuxtLink to="/cart">BAG ({{ cartCount }})</NuxtLink>
         </div>
       </nav>
     </header>

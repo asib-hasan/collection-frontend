@@ -1,7 +1,10 @@
 <script setup>
 import { ref } from 'vue';
+import { useCartStore } from '~/stores/cart';
 const route = useRoute();
 useHead({ title: `Product ${route.params.slug} | CCollection` });
+
+const cartStore = useCartStore();
 
 const images = [
   '/images/image12.webp',
@@ -15,6 +18,38 @@ const mainImage = ref(images[0]);
 function setMainImage(img) {
   mainImage.value = img;
 }
+
+const colors = [
+  { name: 'Champagne', hex: '#f5dbe0' },
+  { name: 'Black', hex: '#111' },
+  { name: 'Burgundy', hex: '#521727' }
+];
+const selectedColor = ref(colors[0].name);
+
+const sizes = [
+  { name: 'XXS', disabled: false },
+  { name: 'XS', disabled: false },
+  { name: 'S', disabled: false },
+  { name: 'M', disabled: false },
+  { name: 'L', disabled: true },
+  { name: 'XL', disabled: false },
+];
+const selectedSize = ref('S');
+
+function addToBag() {
+  const product = {
+    id: route.params.slug,
+    name: 'Off-Shoulder Dangling Bead Strap Cascading Ruffle Gown',
+    price: 450.00,
+    quantity: 1,
+    stock: 10,
+    sku: `EW2026-${route.params.slug}`,
+    color: selectedColor.value,
+    size: selectedSize.value,
+    image: mainImage.value
+  };
+  cartStore.addToCart(product);
+}
 </script>
 
 <template>
@@ -22,7 +57,7 @@ function setMainImage(img) {
    <div class="breadcrumb">
       <NuxtLink to="/">Home</NuxtLink> 
       <span class="sep">/</span> 
-      <NuxtLink to="/">Prom Dresses</NuxtLink> 
+      <NuxtLink to="/products?category=Prom+2026">Prom Dresses</NuxtLink> 
       <span class="sep">/</span> 
       <span class="current">{{ route.params.slug }}</span>
    </div>
@@ -64,12 +99,18 @@ function setMainImage(img) {
             <div class="attr-group">
                <div class="attr-header">
                   <strong>Color:</strong>
-                  <span>Champagne</span>
+                  <span>{{ selectedColor }}</span>
                </div>
                <div class="colors">
-                  <button class="color-btn active" style="background:#f5dbe0" aria-label="Blush Pink"></button>
-                  <button class="color-btn" style="background:#111" aria-label="Black"></button>
-                  <button class="color-btn" style="background:#521727" aria-label="Burgundy"></button>
+                  <button 
+                     v-for="color in colors" 
+                     :key="color.name"
+                     class="color-btn" 
+                     :class="{ active: selectedColor === color.name }"
+                     :style="{ background: color.hex }" 
+                     :aria-label="color.name"
+                     @click="selectedColor = color.name"
+                  ></button>
                </div>
             </div>
             
@@ -79,16 +120,18 @@ function setMainImage(img) {
                   <button class="size-guide">Size Guide</button>
                </div>
                <div class="size-grid">
-                  <button class="size-btn">XXS</button>
-                  <button class="size-btn">XS</button>
-                  <button class="size-btn active">S</button>
-                  <button class="size-btn">M</button>
-                  <button class="size-btn disabled">L</button>
-                  <button class="size-btn">XL</button>
+                  <button 
+                     v-for="size in sizes" 
+                     :key="size.name"
+                     class="size-btn" 
+                     :class="{ active: selectedSize === size.name, disabled: size.disabled }"
+                     :disabled="size.disabled"
+                     @click="selectedSize = size.name"
+                  >{{ size.name }}</button>
                </div>
             </div>
 
-            <button class="btn-add">ADD TO BAG - $450.00</button>
+            <button class="btn-add" @click="addToBag">ADD TO BAG - $450.00</button>
 
             <div class="delivery-info">
                <p>Free standard shipping on orders over $200</p>
@@ -123,7 +166,7 @@ function setMainImage(img) {
           <div class="heading-line"></div>
       </div>
       <div class="product-grid">
-         <NuxtLink :to="'/Products/GL3674'" class="product-card">
+         <NuxtLink :to="'/products/GL3674'" class="product-card">
             <div class="product-img">
                <img src="/images/image6.webp" alt="Gown" class="img-front" />
                <img src="/images/image7.webp" alt="Gown Hover" class="img-hover" />
@@ -134,7 +177,7 @@ function setMainImage(img) {
                <span class="price">$520.00</span>
             </div>
          </NuxtLink>
-         <NuxtLink :to="'/Products/GL3675'" class="product-card">
+         <NuxtLink :to="'/products/GL3675'" class="product-card">
             <div class="product-img">
                <img src="/images/image8.webp" alt="Gown" class="img-front" />
                <img src="/images/image9.webp" alt="Gown Hover" class="img-hover" />
@@ -145,7 +188,7 @@ function setMainImage(img) {
                <span class="price">$390.00</span>
             </div>
          </NuxtLink>
-         <NuxtLink :to="'/Products/GL3676'" class="product-card">
+         <NuxtLink :to="'/products/GL3676'" class="product-card">
             <div class="product-img">
                <img src="/images/image16.webp" alt="Gown" class="img-front" />
                <img src="/images/image17.webp" alt="Gown Hover" class="img-hover" />
@@ -156,7 +199,7 @@ function setMainImage(img) {
                <span class="price">$310.00</span>
             </div>
          </NuxtLink>
-         <NuxtLink :to="'/Products/GL3677'" class="product-card hidden-mobile">
+         <NuxtLink :to="'/products/GL3677'" class="product-card hidden-mobile">
             <div class="product-img">
                <img src="/images/image19.webp" alt="Gown" class="img-front" />
                <img src="/images/image20.webp" alt="Gown Hover" class="img-hover" />
@@ -173,7 +216,6 @@ function setMainImage(img) {
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Jost:wght@300;400;500&display=swap');
 
 h1, h2, h3, .brand {
    font-family: 'Cinzel', serif;

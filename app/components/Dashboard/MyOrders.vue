@@ -318,7 +318,7 @@ const handleImageError = (event: Event) => {
                   class="flex gap-2 w-full sm:w-auto shrink-0 justify-end mt-2 sm:mt-0"
                 >
                   <NuxtLink
-                    :to="`/Products/${orderDetail.product.slug}`"
+                    :to="`/products/${orderDetail.product.slug}`"
                     class="flex-1 sm:flex-none px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary to-secondary text-white text-xs font-black uppercase tracking-widest hover:shadow-lg hover:shadow-primary/30 transition-all text-center flex items-center justify-center gap-2 active:scale-95"
                   >
                     <Icon name="ph:shopping-cart-simple-bold" class="text-sm" />

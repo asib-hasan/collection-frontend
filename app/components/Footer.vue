@@ -10,10 +10,10 @@
       </div>
       <div class="cc-footer-col">
         <h4>SHOP</h4>
-        <NuxtLink to="/">Prom Dresses</NuxtLink>
-        <NuxtLink to="/">Homecoming</NuxtLink>
-        <NuxtLink to="/">Evening Gowns</NuxtLink>
-        <NuxtLink to="/">Wedding Dresses</NuxtLink>
+        <NuxtLink to="/products?category=Prom+2026">Prom Dresses</NuxtLink>
+        <NuxtLink to="/products?category=Homecoming">Homecoming</NuxtLink>
+        <NuxtLink to="/products?category=Evening">Evening Gowns</NuxtLink>
+        <NuxtLink to="/products?category=Bridal">Wedding Dresses</NuxtLink>
       </div>
       <div class="cc-footer-col">
         <h4>ABOUT</h4>

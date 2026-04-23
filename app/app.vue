@@ -36,6 +36,16 @@ await callOnce(async () => {
   --color-background: #ecf0f3;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Jost:wght@300;400;500&display=swap');
+
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-jost {
+  font-family: 'Jost', sans-serif;
+}
+
 /* .font-nikosh {
   font-family: "nikosh", serif !important;
 } */
