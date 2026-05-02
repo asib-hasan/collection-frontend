@@ -42,8 +42,7 @@ const mainNavLinks = [
   { name: 'KIDS', to: '/products?category=Kids' },
   { name: 'COLLECTIONS', to: '/collections' },
   { name: 'BLOG', to: '/blog' },
-  { name: 'CONTACT US', to: '/contact' },
-  { name: 'STORES', to: '/stores' }
+  { name: 'CONTACT US', to: '/contact' }
 ];
 </script>
 

@@ -378,7 +378,9 @@ const setPage = (page: number) => {
                 <Icon name="mdi:chevron-down" class="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
               </div>
             </div>
+            </div>
           </div>
+
 
           <!-- Grid -->
           <div v-if="paginatedProducts.length > 0" class="flex flex-col gap-16">
