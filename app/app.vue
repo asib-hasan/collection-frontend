@@ -11,6 +11,9 @@
 </template>
 
 <script setup>
+import { useCartStore } from '~/stores/cart';
+import { useWishlistStore } from '~/stores/useWishlistStore';
+import { useAPI } from '~/composables/useAPI';
 const cartStore = useCartStore();
 const wishlistStore = useWishlistStore();
 onMounted(() => {
@@ -27,6 +30,7 @@ await callOnce(async () => {
 <style>
 @import "tailwindcss";
 @import "@nuxt/ui";
+@import "~/assets/css/home.css";
 /* @import url("https://fonts.googleapis.com/css2?family=Momo+Trust+Display&family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"); */
 
 

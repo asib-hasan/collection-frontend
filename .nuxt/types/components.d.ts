@@ -25,12 +25,14 @@ interface _GlobalComponents {
   Footer: typeof import("../../app/components/Footer.vue")['default']
   Header: typeof import("../../app/components/Header.vue")['default']
   HomeBannerSection: typeof import("../../app/components/Home/BannerSection.vue")['default']
-  HomeBlogSection: typeof import("../../app/components/Home/BlogSection.vue")['default']
+  HomeBrandSection: typeof import("../../app/components/Home/BrandSection.vue")['default']
+  HomeCampaignSection: typeof import("../../app/components/Home/CampaignSection.vue")['default']
   HomeCategorySection: typeof import("../../app/components/Home/CategorySection.vue")['default']
+  HomeDualBannerSection: typeof import("../../app/components/Home/DualBannerSection.vue")['default']
   HomeHeroSection: typeof import("../../app/components/Home/HeroSection.vue")['default']
   HomeNewArrivalSection: typeof import("../../app/components/Home/NewArrivalSection.vue")['default']
-  HomeProductSection: typeof import("../../app/components/Home/ProductSection.vue")['default']
-  HomeTestimonialSection: typeof import("../../app/components/Home/TestimonialSection.vue")['default']
+  HomePhilosophySection: typeof import("../../app/components/Home/PhilosophySection.vue")['default']
+  HomeTrendingSection: typeof import("../../app/components/Home/TrendingSection.vue")['default']
   MobileHeader: typeof import("../../app/components/MobileHeader.vue")['default']
   NavBar: typeof import("../../app/components/NavBar.vue")['default']
   ProductCard: typeof import("../../app/components/ProductCard.vue")['default']
@@ -198,12 +200,14 @@ interface _GlobalComponents {
   LazyFooter: LazyComponent<typeof import("../../app/components/Footer.vue")['default']>
   LazyHeader: LazyComponent<typeof import("../../app/components/Header.vue")['default']>
   LazyHomeBannerSection: LazyComponent<typeof import("../../app/components/Home/BannerSection.vue")['default']>
-  LazyHomeBlogSection: LazyComponent<typeof import("../../app/components/Home/BlogSection.vue")['default']>
+  LazyHomeBrandSection: LazyComponent<typeof import("../../app/components/Home/BrandSection.vue")['default']>
+  LazyHomeCampaignSection: LazyComponent<typeof import("../../app/components/Home/CampaignSection.vue")['default']>
   LazyHomeCategorySection: LazyComponent<typeof import("../../app/components/Home/CategorySection.vue")['default']>
+  LazyHomeDualBannerSection: LazyComponent<typeof import("../../app/components/Home/DualBannerSection.vue")['default']>
   LazyHomeHeroSection: LazyComponent<typeof import("../../app/components/Home/HeroSection.vue")['default']>
   LazyHomeNewArrivalSection: LazyComponent<typeof import("../../app/components/Home/NewArrivalSection.vue")['default']>
-  LazyHomeProductSection: LazyComponent<typeof import("../../app/components/Home/ProductSection.vue")['default']>
-  LazyHomeTestimonialSection: LazyComponent<typeof import("../../app/components/Home/TestimonialSection.vue")['default']>
+  LazyHomePhilosophySection: LazyComponent<typeof import("../../app/components/Home/PhilosophySection.vue")['default']>
+  LazyHomeTrendingSection: LazyComponent<typeof import("../../app/components/Home/TrendingSection.vue")['default']>
   LazyMobileHeader: LazyComponent<typeof import("../../app/components/MobileHeader.vue")['default']>
   LazyNavBar: LazyComponent<typeof import("../../app/components/NavBar.vue")['default']>
   LazyProductCard: LazyComponent<typeof import("../../app/components/ProductCard.vue")['default']>

@@ -1,5 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
+import { useAuthStore } from '~/stores/auth';
+import { useCartStore } from '~/stores/cart';
 
 const isDrawerOpen = ref(false);
 const isSearchOpen = ref(false);

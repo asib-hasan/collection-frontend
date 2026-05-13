@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useAuthStore } from '~/stores/auth';
+import { useCartStore } from '~/stores/cart';
+import { useWishlistStore } from '~/stores/useWishlistStore';
+import { useAPI } from '~/composables/useAPI';
 const authStore = useAuthStore();
 const cartStore = useCartStore();
 const wishlistStore = useWishlistStore();

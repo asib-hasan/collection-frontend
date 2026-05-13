@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, nextTick } from 'vue';
 import { useNuxtApp, navigateTo } from '#app';
+import { useAuthStore } from '~/stores/auth';
 
 const authStore = useAuthStore();
 const toast = useToast();

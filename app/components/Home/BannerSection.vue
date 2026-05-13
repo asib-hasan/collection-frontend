@@ -112,6 +112,7 @@
 </template>
 
 <script setup>
+import { useAPI } from '~/composables/useAPI';
 const settings = useState('config');
 const { data: offerBanners } = await useAPI("/frontend/v1/get-Offer-Banner");
 const { data: coupons } = await useAPI("/frontend/v1/get-coupon");

@@ -31,14 +31,6 @@ export { requestIdleCallback, cancelIdleCallback } from '#app/compat/idle-callba
 export { setInterval } from '#app/compat/interval';
 export { definePageMeta, PageMeta } from '#app/composables/pages';
 export { defineLazyHydrationComponent } from '#app/composables/lazy-hydration';
-export { useAPI } from '../app/composables/useAPI';
-export { useApiError } from '../app/composables/useApiError';
-export { useAuthStore } from '../app/stores/auth';
-export { useCartStore } from '../app/stores/cart';
-export { useEmailStore } from '../app/stores/emailStore';
-export { useResetStore } from '../app/stores/reset';
-export { useStore } from '../app/stores/useStore';
-export { useWishlistStore } from '../app/stores/useWishlistStore';
 export { defineLocale, extendLocale } from '../node_modules/@nuxt/ui/dist/runtime/composables/defineLocale';
 export { defineShortcuts, extractShortcuts } from '../node_modules/@nuxt/ui/dist/runtime/composables/defineShortcuts';
 export { useContentSearch } from '../node_modules/@nuxt/ui/dist/runtime/composables/useContentSearch';

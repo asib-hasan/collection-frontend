@@ -3,42 +3,42 @@ import { Server } from 'node:http';
 import { resolve, dirname, join } from 'node:path';
 import nodeCrypto from 'node:crypto';
 import { parentPort, threadId } from 'node:worker_threads';
-import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send, getRequestHeaders, setResponseHeader, appendResponseHeader, getRequestURL, getResponseHeader, removeResponseHeader, createError, getQuery as getQuery$1, readBody, getResponseStatus, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getRouterParam, getResponseStatusText } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/h3/dist/index.mjs';
-import { escapeHtml } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/@vue/shared/dist/shared.cjs.js';
-import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, decodePath, withLeadingSlash, withoutTrailingSlash, joinRelativeURL } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/ufo/dist/index.mjs';
-import destr, { destr as destr$1 } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/destr/dist/index.mjs';
-import { renderToString } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/vue/server-renderer/index.mjs';
-import { klona } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/klona/dist/index.mjs';
-import defu, { defuFn } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/defu/dist/defu.mjs';
-import { snakeCase } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/scule/dist/index.mjs';
-import { createHead as createHead$1, propsToString, renderSSRHead } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/unhead/dist/server.mjs';
-import { createStorage, prefixStorage } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/unstorage/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/unstorage/drivers/fs.mjs';
-import { stringify, uneval } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/devalue/index.js';
-import { isVNode, isRef, toValue } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/vue/index.mjs';
-import { createHooks } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/nitropack/node_modules/hookable/dist/index.mjs';
-import { createFetch, Headers as Headers$1 } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/ofetch/dist/node.mjs';
-import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/node-mock-http/dist/index.mjs';
-import { digest, hash as hash$1 } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/ohash/dist/index.mjs';
-import { toRouteMatcher, createRouter } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/radix3/dist/index.mjs';
+import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send, getRequestHeaders, setResponseHeader, appendResponseHeader, getRequestURL, getResponseHeader, removeResponseHeader, createError, getQuery as getQuery$1, readBody, getResponseStatus, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getRouterParam, getResponseStatusText } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/h3/dist/index.mjs';
+import { escapeHtml } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/@vue/shared/dist/shared.cjs.js';
+import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, decodePath, withLeadingSlash, withoutTrailingSlash, joinRelativeURL } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/ufo/dist/index.mjs';
+import destr, { destr as destr$1 } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/destr/dist/index.mjs';
+import { renderToString } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/vue/server-renderer/index.mjs';
+import { klona } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/klona/dist/index.mjs';
+import defu, { defuFn } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/defu/dist/defu.mjs';
+import { snakeCase } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/scule/dist/index.mjs';
+import { createHead as createHead$1, propsToString, renderSSRHead } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/unhead/dist/server.mjs';
+import { createStorage, prefixStorage } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/unstorage/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/unstorage/drivers/fs.mjs';
+import { stringify, uneval } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/devalue/index.js';
+import { isVNode, isRef, toValue } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/vue/index.mjs';
+import { createHooks } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/nitropack/node_modules/hookable/dist/index.mjs';
+import { createFetch, Headers as Headers$1 } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/ofetch/dist/node.mjs';
+import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/node-mock-http/dist/index.mjs';
+import { digest, hash as hash$1 } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/ohash/dist/index.mjs';
+import { toRouteMatcher, createRouter } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/radix3/dist/index.mjs';
 import { readFile } from 'node:fs/promises';
-import consola, { consola as consola$1 } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/consola/dist/index.mjs';
-import { ErrorParser } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/youch-core/build/index.js';
-import { Youch } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/youch/build/index.js';
-import { SourceMapConsumer } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/source-map/source-map.js';
+import consola, { consola as consola$1 } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/consola/dist/index.mjs';
+import { ErrorParser } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/youch-core/build/index.js';
+import { Youch } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/youch/build/index.js';
+import { SourceMapConsumer } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/source-map/source-map.js';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { getContext } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/unctx/dist/index.mjs';
-import { captureRawStackTrace, parseRawStackTrace } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/errx/dist/index.js';
-import _wH6JrtIxmaSoA8lCPWFnE9z4lQeXW6H5z3l5aymEQw from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/@nuxt/vite-builder/dist/fix-stacktrace.mjs';
+import { getContext } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/unctx/dist/index.mjs';
+import { captureRawStackTrace, parseRawStackTrace } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/errx/dist/index.js';
+import _wH6JrtIxmaSoA8lCPWFnE9z4lQeXW6H5z3l5aymEQw from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/@nuxt/vite-builder/dist/fix-stacktrace.mjs';
 import { promises } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { dirname as dirname$1, resolve as resolve$1, basename } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/pathe/dist/index.mjs';
-import { walkResolver } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/unhead/dist/utils.mjs';
-import { getIcons } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/node_modules/@iconify/utils/lib/index.js';
-import { collections } from 'file://E:/ASIB/CCollection/New%20folder/collection-frontend/.nuxt/nuxt-icon-server-bundle.mjs';
+import { dirname as dirname$1, resolve as resolve$1, basename } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/pathe/dist/index.mjs';
+import { walkResolver } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/unhead/dist/utils.mjs';
+import { getIcons } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/node_modules/@iconify/utils/lib/index.js';
+import { collections } from 'file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/.nuxt/nuxt-icon-server-bundle.mjs';
 
-const serverAssets = [{"baseName":"server","dir":"E:/ASIB/CCollection/New folder/collection-frontend/server/assets"}];
+const serverAssets = [{"baseName":"server","dir":"E:/ASIB/CCollection/New folder (2)/collection-frontend/server/assets"}];
 
 const assets$1 = createStorage();
 
@@ -50,11 +50,11 @@ const storage = createStorage({});
 
 storage.mount('/assets', assets$1);
 
-storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"E:/ASIB/CCollection/New folder/collection-frontend","watchOptions":{"ignored":[null]}}));
-storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"E:/ASIB/CCollection/New folder/collection-frontend/server","watchOptions":{"ignored":[null]}}));
-storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"E:/ASIB/CCollection/New folder/collection-frontend/.nuxt"}));
-storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"E:/ASIB/CCollection/New folder/collection-frontend/.nuxt/cache"}));
-storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"E:/ASIB/CCollection/New folder/collection-frontend/.data/kv"}));
+storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"E:/ASIB/CCollection/New folder (2)/collection-frontend","watchOptions":{"ignored":[null]}}));
+storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"E:/ASIB/CCollection/New folder (2)/collection-frontend/server","watchOptions":{"ignored":[null]}}));
+storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"E:/ASIB/CCollection/New folder (2)/collection-frontend/.nuxt"}));
+storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"E:/ASIB/CCollection/New folder (2)/collection-frontend/.nuxt/cache"}));
+storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"E:/ASIB/CCollection/New folder (2)/collection-frontend/.data/kv"}));
 
 function useStorage(base = "") {
   return base ? prefixStorage(storage, base) : storage;
@@ -2337,13 +2337,13 @@ if (!window.__NUXT_DEVTOOLS_TIME_METRIC__) {
 window.__NUXT_DEVTOOLS_TIME_METRIC__.appInit = Date.now()
 `;
 
-const _PnkCnYOp06iffRC7AjotccrOhpFlHB31zRaNG8gau_Y = (function(nitro) {
+const _E6TOLyKgBp8FYIElq08Et0QF7OpC1A3uJPOOpq0YB4 = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script$1}<\/script>`);
   });
 });
 
-const rootDir = "E:/ASIB/CCollection/New folder/collection-frontend";
+const rootDir = "E:/ASIB/CCollection/New folder (2)/collection-frontend";
 
 const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"}],"link":[],"style":[],"script":[],"noscript":[]};
 
@@ -2372,7 +2372,7 @@ const asyncContext = getContext("nuxt-dev", {
 	asyncContext: true,
 	AsyncLocalStorage
 });
-const _D3RSoSpqiomkW7DwYtmhGN8vUFaSAHFa3k3pQGoQ96s = (nitroApp) => {
+const _YWBvuai3gkiZMyVwsnpOU1D0FqFuZ8rPdyVT2VO5jkI = (nitroApp) => {
 	const handler = nitroApp.h3App.handler;
 	nitroApp.h3App.handler = (event) => {
 		return asyncContext.callAsync({
@@ -2447,16 +2447,16 @@ function onConsoleLog(callback) {
 
 const script = "\"use strict\";(()=>{const t=window,e=document.documentElement,c=[\"dark\",\"light\"],n=getStorageValue(\"localStorage\",\"nuxt-color-mode\")||\"system\";let i=n===\"system\"?u():n;const r=e.getAttribute(\"data-color-mode-forced\");r&&(i=r),l(i),t[\"__NUXT_COLOR_MODE__\"]={preference:n,value:i,getColorScheme:u,addColorScheme:l,removeColorScheme:d};function l(o){const s=\"\"+o+\"\",a=\"\";e.classList?e.classList.add(s):e.className+=\" \"+s,a&&e.setAttribute(\"data-\"+a,o)}function d(o){const s=\"\"+o+\"\",a=\"\";e.classList?e.classList.remove(s):e.className=e.className.replace(new RegExp(s,\"g\"),\"\"),a&&e.removeAttribute(\"data-\"+a)}function f(o){return t.matchMedia(\"(prefers-color-scheme\"+o+\")\")}function u(){if(t.matchMedia&&f(\"\").media!==\"not all\"){for(const o of c)if(f(\":\"+o).matches)return o}return\"light\"}})();function getStorageValue(t,e){switch(t){case\"localStorage\":return window.localStorage.getItem(e);case\"sessionStorage\":return window.sessionStorage.getItem(e);case\"cookie\":return getCookie(e);default:return null}}function getCookie(t){const c=(\"; \"+window.document.cookie).split(\"; \"+t+\"=\");if(c.length===2)return c.pop()?.split(\";\").shift()}";
 
-const _3fvpTNPC39jL_mVouLpp4Buv7hL23__T_JIgXltPCco = (function(nitro) {
+const _uWAN7ZmKKpFHiw1hAoJ_qwHepZXhaeufFOl1Zgykf5w = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script}<\/script>`);
   });
 });
 
 const plugins = [
-  _PnkCnYOp06iffRC7AjotccrOhpFlHB31zRaNG8gau_Y,
-_D3RSoSpqiomkW7DwYtmhGN8vUFaSAHFa3k3pQGoQ96s,
-_3fvpTNPC39jL_mVouLpp4Buv7hL23__T_JIgXltPCco,
+  _E6TOLyKgBp8FYIElq08Et0QF7OpC1A3uJPOOpq0YB4,
+_YWBvuai3gkiZMyVwsnpOU1D0FqFuZ8rPdyVT2VO5jkI,
+_uWAN7ZmKKpFHiw1hAoJ_qwHepZXhaeufFOl1Zgykf5w,
 _wH6JrtIxmaSoA8lCPWFnE9z4lQeXW6H5z3l5aymEQw
 ];
 
@@ -2485,7 +2485,7 @@ function getAsset (id) {
 
 const METHODS = /* @__PURE__ */ new Set(["HEAD", "GET"]);
 const EncodingMap = { gzip: ".gz", br: ".br" };
-const _HHklBI = eventHandler((event) => {
+const _G5Knhv = eventHandler((event) => {
   if (event.method && !METHODS.has(event.method)) {
     return;
   }
@@ -2627,9 +2627,9 @@ function publicAssetsURL(...path) {
 const APP_ROOT_OPEN_TAG = `<${appRootTag}${propsToString(appRootAttrs)}>`;
 const APP_ROOT_CLOSE_TAG = `</${appRootTag}>`;
 // @ts-expect-error file will be produced after app build
-const getServerEntry = () => import('file://E:/ASIB/CCollection/New%20folder/collection-frontend/.nuxt//dist/server/server.mjs').then((r) => r.default || r);
+const getServerEntry = () => import('file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/.nuxt//dist/server/server.mjs').then((r) => r.default || r);
 // @ts-expect-error file will be produced after app build
-const getClientManifest = () => import('file://E:/ASIB/CCollection/New%20folder/collection-frontend/.nuxt//dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
+const getClientManifest = () => import('file://E:/ASIB/CCollection/New%20folder%20(2)/collection-frontend/.nuxt//dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
 // -- SSR Renderer --
 const getSSRRenderer = lazyCachedFunction(async () => {
 	// Load server bundle
@@ -2999,7 +2999,7 @@ async function runTask(name, {
 
 const warnOnceSet = /* @__PURE__ */ new Set();
 const DEFAULT_ENDPOINT = "https://api.iconify.design";
-const _NkBBcE = defineCachedEventHandler(async (event) => {
+const _C7cAlG = defineCachedEventHandler(async (event) => {
   const url = getRequestURL(event);
   if (!url)
     return createError({ status: 400, message: "Invalid icon request" });
@@ -3057,15 +3057,15 @@ const _NkBBcE = defineCachedEventHandler(async (event) => {
   // 1 week
 });
 
-const _lazy_tfIbOn = () => Promise.resolve().then(function () { return renderer; });
+const _lazy_Fwe98m = () => Promise.resolve().then(function () { return renderer; });
 
 const handlers = [
-  { route: '', handler: _HHklBI, lazy: false, middleware: true, method: undefined },
-  { route: '/__nuxt_error', handler: _lazy_tfIbOn, lazy: true, middleware: false, method: undefined },
+  { route: '', handler: _G5Knhv, lazy: false, middleware: true, method: undefined },
+  { route: '/__nuxt_error', handler: _lazy_Fwe98m, lazy: true, middleware: false, method: undefined },
   { route: '/__nuxt_island/**', handler: handler$1, lazy: false, middleware: false, method: undefined },
-  { route: '/api/_nuxt_icon/:collection', handler: _NkBBcE, lazy: false, middleware: false, method: undefined },
-  { route: '/_fonts/**', handler: _lazy_tfIbOn, lazy: true, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_tfIbOn, lazy: true, middleware: false, method: undefined }
+  { route: '/api/_nuxt_icon/:collection', handler: _C7cAlG, lazy: false, middleware: false, method: undefined },
+  { route: '/_fonts/**', handler: _lazy_Fwe98m, lazy: true, middleware: false, method: undefined },
+  { route: '/**', handler: _lazy_Fwe98m, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {

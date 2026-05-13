@@ -94,30 +94,33 @@ const mockProducts = [
   }
 ];
 
-const categoryList = computed(() => [
+const mockCategories = [
   { id: 'all', name: 'All', icon: 'mdi:view-grid-outline' },
   { id: 1, name: 'Prom 2026', icon: 'mdi:tag-outline' },
   { id: 2, name: 'Evening', icon: 'mdi:tag-outline' },
   { id: 3, name: 'Bridal', icon: 'mdi:tag-outline' },
   { id: 4, name: 'Homecoming', icon: 'mdi:tag-outline' }
-]);
+];
 
-const productList = computed(() => mockProducts);
-
-const colorList = computed(() => [
+const mockColors = [
   { id: 1, name: 'Champagne', hex_code: '#f5dbe0' },
   { id: 2, name: 'Black', hex_code: '#111' },
   { id: 3, name: 'Burgundy', hex_code: '#521727' }
-]);
+];
 
-const sizeList = computed(() => [
+const mockSizes = [
   { id: 1, name: 'XXS' },
   { id: 2, name: 'XS' },
   { id: 3, name: 'S' },
   { id: 4, name: 'M' },
   { id: 5, name: 'L' },
   { id: 6, name: 'XL' }
-]);
+];
+
+const categoryList = computed(() => mockCategories);
+const productList = computed(() => mockProducts);
+const colorList = computed(() => mockColors);
+const sizeList = computed(() => mockSizes);
 
 const toggleSize = (sizeName: string) => {
   const index = selectedSizes.value.indexOf(sizeName)

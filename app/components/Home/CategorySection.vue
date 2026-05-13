@@ -1,23 +1,50 @@
-<template>
-    <section class="py-12 sm:py-16 md:py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12 md:mb-16 text-gray-900 tracking-wide uppercase">
-                Shop by Categories
-            </h2>
-           
-            <!-- Container for category cards -->
-            <UCarousel :items="categories" auto-scroll :loop="true" arrows indicators :ui="{
-                item: 'basis-1/2 md:basis-1/3 lg:basis-1/5 ps-0 pe-0 h-[300px] sm:h-[350px] lg:h-[400px]',
-                container: 'flex gap-0'
-            }" class="w-full rounded-lg overflow-hidden shadow-lg">
-                <template #default="{ item: category }">
-                    <CategoryCard :category="category" class="w-full h-full" />
-                </template>
-            </UCarousel>
-        </div>
-    </section>
-</template>
-
 <script setup>
-const { data: categories } = await useAPI("/frontend/v1/category");
+const categories = [
+  {
+    name: 'PROM 2026',
+    link: '/products?category=Prom+2026',
+    image: '/images/image2.webp',
+    alt: 'Prom 2026'
+  },
+  {
+    name: 'HOMECOMING',
+    link: '/products?category=Homecoming',
+    image: '/images/image5.webp',
+    alt: 'Homecoming'
+  },
+  {
+    name: 'BRIDAL',
+    link: '/products?category=Bridal',
+    image: '/images/image10.webp',
+    alt: 'Bridal'
+  },
+  {
+    name: 'EVENING',
+    link: '/products?category=Evening',
+    image: '/images/image43.webp',
+    alt: 'Evening Gowns'
+  }
+]
 </script>
+
+<template>
+   <section class="home-section cc-categories">
+      <div class="section-heading">
+         <h2>SHOP BY CATEGORY</h2>
+         <div class="heading-line"></div>
+      </div>
+      <div class="category-grid">
+         <NuxtLink 
+            v-for="(cat, index) in categories" 
+            :key="index" 
+            :to="cat.link" 
+            class="cat-card"
+         >
+            <div class="cat-img-wrapper">
+               <img :src="cat.image" :alt="cat.alt" />
+            </div>
+            <div class="cat-label"><span>{{ cat.name }}</span></div>
+         </NuxtLink>
+      </div>
+   </section>
+</template>
